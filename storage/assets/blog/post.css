@@ -1,0 +1,366 @@
+@font-face {
+    font-display: swap;
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: local("PT Sans"), local("PTSans-Regular"), url(https://fonts.gstatic.com/s/ptsans/v10/jizaRExUiTo99u79D0-ExdGM.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: local("PT Sans Bold"), local("PTSans-Bold"), url(https://fonts.gstatic.com/s/ptsans/v10/jizfRExUiTo99u79B_mh0OOtLQ0Z.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Merriweather Bold"), local("Merriweather-Bold"), url(https://fonts.gstatic.com/s/merriweather/v20/u-4n0qyriQwlOrhSvowK_l52xwNZVcf6lvg.woff2) format("woff2")
+}
+
+@import url('https://fonts.googleapis.com/css?family=PT+Serif&display=swap');
+
+/**
+ * image2
+ */
+ .align-left {
+    float: left;
+    margin-right: 20px;
+}
+
+.align-right {
+    float: right;
+    margin-left: 20px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-center > figure {
+    display: inline-block;
+}
+
+.post-block img, .cke_editable img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: auto !important
+}
+
+.post-block p,.ke_editable p {
+    font-family: "PT Serif", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #4d4d4d;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.post-block blockquote, .cke_editable blockquote
+{
+    font-style: italic;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    padding: 2px 0;
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 0;
+    padding-left: 20px;
+    padding-right: 8px;
+    border-left-width: 5px;
+}
+
+.post-block blockquote p, 
+.cke_editable blockquote p{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.post-block a,
+.cke_editable a
+{
+    color: #0782C1;
+}
+
+.post-block ol,.post-block ul,.post-block dl,
+.cke_editable ol,.cke_editable ul,.cke_editable dl
+{
+    /* IE7: reset rtl list margin. (#7334) */
+    *margin-right: 0px;
+    /* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+    padding: 0 40px;
+}
+
+.post-block h1,.post-block h2,.post-block h3,.post-block h4,.post-block h5,.post-block h6,
+.cke_editable h1,.cke_editable h2,.cke_editable h3,.cke_editable h4,.cke_editable h5,.cke_editable h6
+{
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.post-block hr,
+.cke_editable hr
+{
+    border: 0px;
+    border-top: 1px solid #ccc;
+}
+
+.post-block img.right,
+.cke_editable img.right
+{
+    border: 1px solid #ccc;
+    float: right;
+    margin-left: 15px;
+    padding: 5px;
+}
+
+.post-block img.left,
+.cke_editable img.left
+{
+    border: 1px solid #ccc;
+    float: left;
+    margin-right: 15px;
+    padding: 5px;
+}
+
+.post-block pre,
+.cke_editable pre
+{
+    white-space: pre; /* CSS 2.1 */
+    word-wrap: break-word; /* IE7 */
+    -moz-tab-size: 4;
+    tab-size: 4;
+}
+
+.marker
+{
+    background-color: Yellow;
+}
+
+.post-block span[lang],
+.cke_editable span[lang]
+{
+    font-style: italic;
+}
+
+.post-block figure,
+.cke_editable figure
+{
+    text-align: center;
+    border: solid 1px #ccc;
+    border-radius: 2px;
+    background: rgba(0,0,0,0.05);
+    padding: 10px;
+    margin: 10px 20px;
+    display: inline-block;
+}
+
+.post-block figure > figcaption,
+.cke_editable figure > figcaption
+{
+    text-align: center;
+    display: block; /* For IE8 */
+}
+
+.post-block a > img,
+.cke_editable a > img 
+{
+    padding: 1px;
+    margin: 1px;
+    border: none;
+    outline: 1px solid #0782C1;
+}
+
+/* Widget Styles */
+.code-featured
+{
+    border: 5px solid red;
+}
+
+.math-featured
+{
+    padding: 20px;
+    box-shadow: 0 0 2px rgba(200, 0, 0, 1);
+    background-color: rgba(255, 0, 0, 0.05);
+    margin: 10px;
+}
+
+.image-clean
+{
+    border: 0;
+    background: none;
+    padding: 0;
+}
+
+.image-clean > figcaption
+{
+    font-size: .9em;
+    text-align: right;
+}
+
+.image-grayscale
+{
+    background-color: white;
+    color: #666;
+}
+
+.image-grayscale img, img.image-grayscale
+{
+    filter: grayscale(100%);
+}
+
+.embed-240p
+{
+    max-width: 426px;
+    max-height: 240px;
+    margin:0 auto;
+}
+
+.embed-360p
+{
+    max-width: 640px;
+    max-height: 360px;
+    margin:0 auto;
+}
+
+.embed-480p
+{
+    max-width: 854px;
+    max-height: 480px;
+    margin:0 auto;
+}
+
+.embed-720p
+{
+    max-width: 1280px;
+    max-height: 720px;
+    margin:0 auto;
+}
+
+.embed-1080p
+{
+    max-width: 1920px;
+    max-height: 1080px;
+    margin:0 auto;
+}
+
+
+img.emoji {
+    display: inline !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 1em !important;
+    width: 1em !important;
+    margin: 0 .07em !important;
+    vertical-align: -0.1em !important;
+    background: none !important;
+    padding: 0 !important;
+}
+
+/**
+ * hljs
+ */
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+
+*/
+
+/*
+Monokai style - ported by Luigi Maselli - http://grigio.org
+*/
+
+/* for block of numbers */
+.hljs-ln-numbers {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+
+    text-align: center !important;
+    color: #ccc !important;
+    border-right: 1px solid #CCC !important;
+    vertical-align: top !important;
+    padding-right: 5px !important;
+
+    /* your custom style here */
+}
+
+/* for block of code */
+.hljs-ln-code {
+    padding-left: 10px !important;
+}
+
+
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #272822; color: #ddd;
+}
+
+.hljs-tag,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-strong,
+.hljs-name {
+  color: #f92672;
+}
+
+.hljs-code {
+  color: #66d9ef;
+}
+
+.hljs-class .hljs-title {
+  color: white;
+}
+
+.hljs-attribute,
+.hljs-symbol,
+.hljs-regexp,
+.hljs-link {
+  color: #bf79db;
+}
+
+.hljs-string,
+.hljs-bullet,
+.hljs-subst,
+.hljs-title,
+.hljs-section,
+.hljs-emphasis,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #a6e22e;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-selector-id {
+  font-weight: bold;
+}

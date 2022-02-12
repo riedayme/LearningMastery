@@ -1,0 +1,85 @@
+Options -Indexes
+
+# setup codeigniter remove index.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+# setup redirect to www 
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# setup access origin for font in css
+<FilesMatch ".(eot|ttf|otf|woff)">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+
+# setup no index assets template
+<Files ~ "\.(css|js|[ot]tf|eot|woff2?|svg)$">
+Header set X-Robots-Tag "noindex"
+</Files>
+
+# remove header
+Header unset X-Powered-By
+
+# setup no index page
+<IfModule mod_headers.c>
+
+# admin page
+SetEnvIf Request_URI "/app/(.*)" NO_INDEX_NO_FOLLOW
+
+# site 
+SetEnvIf Request_URI "/ads.txt" NO_INDEX
+SetEnvIf Request_URI "/robots.txt" NO_INDEX
+SetEnvIf Request_URI "/sitemap(.*).xml" NO_INDEX
+
+#courses
+SetEnvIf Request_URI "/courses-filter" NO_INDEX
+SetEnvIf Request_URI "/courses-lesson" NO_INDEX
+
+# blog
+SetEnvIf Request_URI "/blog-search" NO_INDEX
+SetEnvIf Request_URI "/blog-category/(.*)" NO_INDEX_FOLLOW
+SetEnvIf Request_URI "/blog-tags/(.*)" NO_INDEX_FOLLOW
+
+# user
+SetEnvIf Request_URI "/auth(.*)" NO_INDEX
+
+Header set X-Robots-Tag "noindex" env=NO_INDEX
+Header set X-Robots-Tag "noindex, nofollow" env=NO_INDEX_NO_FOLLOW
+Header set X-Robots-Tag "noindex, follow" env=NO_INDEX_FOLLOW
+
+</IfModule>
+
+# setup caching assets static
+<filesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Video
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/mpeg "access plus 1 year"
+
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+
+  # Others
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType application/x-shockwave-flash "access plus 1 month"
+</IfModule>

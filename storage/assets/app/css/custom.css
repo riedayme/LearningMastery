@@ -1,0 +1,75 @@
+/**
+ * Datatables
+ */
+ div.dataTables_wrapper div.dataTables_processing{font-size:0!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='loader-1' x='0px' y='0px' width='40px' height='40px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50;' xml:space='preserve'%3E%3Cpath fill='%23000' d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z' transform='rotate(206.224 25 25)'%3E%3CanimateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='0.6s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E")!important;background-color:#fff;background-size:100%;width:50px!important;height:50px;border:none;box-shadow:0 4px 8px rgba(0,0,0,.03);top:50%!important;left:50%!important;-webkit-transform:translate(-50%,-50%)!important;transform:translate(-50%,-50%)!important;margin:0!important;opacity:1!important;position:absolute;z-index:1}div.dataTables_filter,div.dataTables_length{display:none}.dataTables_length select{display:inline-block;width:100%;max-width:230px;margin-left:.625rem;padding:.59375rem .9375rem;transition:all .3s;border:1px solid #dfe3e9;border-radius:4px;background-color:#fff;color:#354052;font-size:.875rem;font-weight:400;resize:none}table.dataTable>tbody>tr.child ul.dtr-details{display:block;padding:0 30px}.c-table__cell,table.dataTable tbody td{border:1px solid #ddd;padding:20px 15px 20px 15px!important}
+
+ .nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.break-word {
+    word-break: break-word;
+    vertical-align: top;
+    white-space: initial;
+}
+
+.c-table__title {
+    padding: 15px 10px 10px;
+}
+
+.c-table__row.selected {
+    background: #efe;
+}
+
+.c-table__row.selected:hover {
+   background-color: #efe 
+}
+
+
+.c-btn--custom {
+    padding:4px 8px;
+}
+.c-btn--custom i {
+    margin: 0;
+}
+
+.c-card__body {
+    overflow: hidden;
+}
+
+.h-100vh {
+    min-height: 100vh;
+}
+
+.c-stage__label {
+    background-color: #222c3c;
+}
+
+[data-toggle="collapse"] i:before{
+    content: "\f146";
+}
+
+[data-toggle="collapse"].collapsed i:before{
+    content: "\f0fe";
+}
+a.custom {
+    color: #354052;
+}
+a.custom:hover {
+    background: #e6eaee;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+/**
+ * ckeditor
+ */
+ #cke_ckeditor img {max-width:100% !important;height:auto !important}
+ #cke_content, #cke_description, #cke_faq{
+    display: block;
+    border-radius: 0;
+    padding: 0;
+}

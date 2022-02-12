@@ -1,0 +1,6623 @@
+@charset "UTF-8";
+/*!
+ * Dashboard UI Kit - v2.1
+ * Copyright 2018 ZawiaStudio
+ * @zawiastudio | zawiastudio.com 
+ */
+/* ==========================================================================
+   #BASE GLOBAL
+   ========================================================================== */
+/**
+ * Resets, unclassed (bare) elements.
+ *
+ * 1. Ensure the page always fills at least the entire height of the viewport.
+ *
+ * 2. Set the default `font-size` and `line-height` for the entire project,
+ *    sourced from our default variables. The `font-size` is calculated to exist
+ *    in ems, the `line-height` is calculated to exist unitlessly.
+ *
+ * 3. Prevent adjustments of font size after orientation changes in
+ *    IE on Windows Phone and in iOS.
+ */
+html {
+  height: 100%;
+  /* [1] */
+  min-height: 100%;
+  /* [1] */
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  /* [2] */
+  line-height: 1.5;
+  /* [2] */
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  /* [3] */ }
+
+body {
+  height: 100%;
+  /* [1] */
+  min-height: 100%;
+  /* [1] */
+  margin: 0;
+  background-color: #EFF3F6; }
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: "Source Sans Pro", sans-serif; }
+
+/**
+ * Simple reset
+ */
+body,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, pre,
+dl, dd, ol, ul,
+figure,
+hr,
+fieldset, legend {
+  margin: 0;
+  padding: 0; }
+
+article,
+aside,
+footer,
+header,
+nav,
+section,
+figcaption,
+figure,
+main {
+  display: block; }
+
+button {
+  cursor: pointer; }
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+
+/**
+ * Remove trailing margins from nested lists.
+ */
+li > ol,
+li > ul {
+  margin-bottom: 0; }
+
+img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  border-style: none; }
+
+textarea {
+  display: block;
+  margin: 0;
+  outline: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+
+/* ==========================================================================
+   #BASE TYPOGRAPHY
+   ========================================================================== */
+/**
+ * Headings, paragraphs, links.
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.5rem;
+  color: #354052;
+  font-weight: 500; }
+
+h1 {
+  font-size: 2.25rem; }
+
+h2 {
+  font-size: 1.75rem; }
+
+h3 {
+  font-size: 1.5rem; }
+
+h4 {
+  font-size: 1.25rem; }
+
+h5 {
+  font-size: 1.125rem; }
+
+h6 {
+  font-size: 1rem; }
+
+p {
+  color: #354052;
+  font-size: 0.875rem; }
+
+strong {
+  color: #354052; }
+
+dl dt,
+dl dd {
+  color: #354052; }
+
+/**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+a {
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
+  background-color: transparent;
+  /* [1] */
+  color: #2ea1f8;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-text-decoration-skip: objects;
+          text-decoration-skip: objects;
+  /* [2] */ }
+  a:hover {
+    color: #2ea1f8;
+    text-decoration: underline; }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* [1] */
+  font-size: 1em;
+  /* [2] */ }
+
+mark {
+  background-color: #ff0;
+  color: #fff; }
+
+small {
+  font-size: 85%; }
+
+blockquote {
+  padding-left: 15px;
+  border-left: 3px solid #e6eaee; }
+
+/* ==========================================================================
+   #PAGE OBJECT
+   ========================================================================== */
+/**
+ * Use `o-page` to strucutre your page layout into sidebar, main content.
+ */
+.o-page {
+  position: relative;
+  height: 100%; }
+
+/**
+ * Used with `o-page__card` for better alignment.
+ */
+.o-page--center {
+  padding-top: 6.25rem; }
+
+/**
+ * 1. Control the width of sidebar.
+ * 2. Sidebar always on the top.
+ */
+.o-page__sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  /* [1] */
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+  z-index: 300;
+  /* [2] */
+  /**
+     * Hide sidebar once viewport is lower than $breakpoint-desktop (992px)
+     *
+     * 1. Increase the width of sidebar on small screens.
+     */ }
+  @media (max-width: 992px) {
+    .o-page__sidebar {
+      width: 300px;
+      /* [1] */
+      -webkit-transform: translateX(-300px);
+              transform: translateX(-300px); } }
+  .o-page__sidebar.is-visible {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+
+/**
+ * Page content is pushed to the right to provide space for the sidebar.
+ *
+ * 1. Must equal the width of the `o-sidebar`.
+ */
+.o-page__content {
+  margin-left: 250px;
+  /* [1] */
+  overflow: hidden; }
+  @media (max-width: 992px) {
+    .o-page__content {
+      margin-left: 0; } }
+  .o-page__content.is-pushed {
+    margin-left: 250px; }
+
+/** 
+ * Page Card
+ *
+ * A centered page card is used when you want the card to be centered and 
+ * provide a little space at the top & bottom e.g. login, 404 pages.
+ */
+.o-page__card {
+  width: 450px;
+  margin: 0 auto 3.125rem; }
+  @media (max-width: 768px) {
+    .o-page__card {
+      width: 95%; } }
+
+/** 
+ * Horizontal Page Card
+ *
+ * Used with login-2 page.
+ */
+.o-page__card--horizontal {
+  width: 800px;
+  margin: 0 auto 3.125rem; }
+  @media (max-width: 992px) {
+    .o-page__card--horizontal {
+      width: 95%; } }
+
+/* ==========================================================================
+   #MEDIA OBJECT
+   ========================================================================== */
+.o-media {
+  display: block; }
+  .o-media::after {
+    display: table !important;
+    clear: both !important;
+    content: "" !important; }
+
+/**
+ * 1. Spacing between the image and the text should be declared through
+ *    the component, usually using a `spacing` utility class. 
+ */
+.o-media__img {
+  /* [1] */
+  float: left; }
+  .o-media__img > img {
+    display: block; }
+
+.o-media__body {
+  display: block;
+  overflow: hidden; }
+  .o-media__body,
+  .o-media__body > :last-child {
+    margin-bottom: 0; }
+
+/* ==========================================================================
+   #LINE OBJECT
+   ========================================================================== */
+/**
+ * The line object is used to align elemnts on one line, obviously.
+ */
+.o-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+/* ==========================================================================
+   #RATIO OBJECT
+   ========================================================================== */
+/**
+ * Ratio object is used to keep media (e.g. images, videos) in
+ * their correct aspect ratios.
+ *
+ * USAGE: 
+ * <div class="o-ratio o-ratio--16:9">
+ *     <iframe src"/"></iframe>
+ * </div>
+ */
+/**
+ * 1. Default cropping is a 1:1 ratio (i.e. a perfect square)
+ */
+.o-ratio {
+  display: block;
+  position: relative; }
+  .o-ratio::before {
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+    /* [1] */
+    content: ""; }
+
+.o-ratio__content,
+.o-ratio > iframe,
+.o-ratio > embed,
+.o-ratio > object {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.o-ratio--16\:9::before {
+  padding-bottom: 56.25%; }
+
+.o-ratio--4\:3::before {
+  padding-bottom: 75%; }
+
+.o-ratio--2\:1::before {
+  padding-bottom: 50%; }
+
+/* ==========================================================================
+   #ALERTS
+   ========================================================================== */
+.c-alert {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 100%;
+  margin: 0 0 0.9375rem 0;
+  padding: 0.75rem 2rem 0.75rem 0.75rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-radius: 4px;
+  color: #fff; }
+  .c-alert .c-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem; }
+  .c-alert.fade {
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    opacity: 0; }
+    .c-alert.fade.show {
+      opacity: 1; }
+
+/**
+ * 1. Align icon with text properly.
+ */
+.c-alert__icon {
+  position: relative;
+  bottom: -4px;
+  /* [1] */
+  margin-right: 0.625rem;
+  font-size: 1.125rem;
+  opacity: 0.7; }
+
+/* Style variants
+   ========================================================================== */
+.c-alert--success {
+  background-color: #1bb934; }
+
+.c-alert--info {
+  background-color: #2ea1f8; }
+
+.c-alert--warning {
+  background-color: #fd9a18; }
+
+.c-alert--danger {
+  background-color: #ed1c24; }
+
+/* ==========================================================================
+   #AVATARS
+   ========================================================================== */
+/**
+ * 1. Enable avatars to act like a dropdown toggle.
+ * 2. Small arrow (icon) used in avatars with dropdowns.
+ * 3. Remove default link decoration when avatar is used as a dropdown toggle.
+ */
+.c-avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+  .c-avatar.has-dropdown {
+    /* [1] */
+    cursor: pointer;
+    overflow: visible; }
+    .c-avatar.has-dropdown::after {
+      /* [2] */
+      display: block;
+      padding-left: 10px;
+      color: #7f8fa4;
+      font-family: "FontAwesome";
+      content: "\f107"; }
+    .c-avatar.has-dropdown:hover {
+      text-decoration: none;
+      /* [3] */ }
+  .c-avatar .c-avatar__img {
+    width: 70px;
+    height: 70px; }
+
+.c-avatar__img {
+  border-radius: 100%;
+  overflow: hidden; }
+
+/* Size variants
+   ========================================================================== */
+.c-avatar--xsmall .c-avatar__img {
+  width: 36px;
+  height: 36px; }
+
+.c-avatar--small .c-avatar__img {
+  width: 50px;
+  height: 50px; }
+
+.c-avatar--medium .c-avatar__img {
+  width: 60px;
+  height: 60px; }
+
+.c-avatar--large .c-avatar__img {
+  width: 90px;
+  height: 90px; }
+
+.c-avatar--xlarge .c-avatar__img {
+  width: 110px;
+  height: 110px; }
+
+.c-avatar--super .c-avatar__img {
+  width: 130px;
+  height: 130px; }
+
+/* ==========================================================================
+   #BADGES
+   ========================================================================== */
+.c-badge {
+  display: inline-block;
+  margin: 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  /**
+     * Badges with icons
+     */ }
+  .c-badge > i {
+    margin-right: 0.3125rem; }
+
+.c-badge--small {
+  padding: 0.25rem 0.625rem;
+  font-size: 10px; }
+
+.c-badge--xsmall {
+  padding: 0.125rem 0.3125rem;
+  font-size: 10px; }
+
+/* Style variants
+   ========================================================================== */
+.c-badge--success {
+  background-color: #1bb934; }
+
+.c-badge--info {
+  background-color: #2ea1f8; }
+
+.c-badge--warning {
+  background-color: #fd9a18; }
+
+.c-badge--danger {
+  background-color: #ed1c24; }
+
+.c-badge--primary {
+  background-color: #475364; }
+
+.c-badge--secondary {
+  background-color: #b7c0cd;
+  color: #fff; }
+
+/* ==========================================================================
+   #BREADCRUMB
+   ========================================================================== */
+.c-breadcrumb {
+  display: block;
+  margin: 0;
+  padding: 0; }
+
+.c-breadcrumb__item {
+  display: inline-block;
+  color: #848C98; }
+  .c-breadcrumb__item > a {
+    color: inherit; }
+  .c-breadcrumb__item:not(:last-child)::after {
+    margin: 0 0.625rem;
+    color: #a1a7aF;
+    content: "/"; }
+  .c-breadcrumb__item.is-active {
+    color: #354052; }
+
+/* ==========================================================================
+   #BUTTON GROUP
+   ========================================================================== */
+/**
+ * A series of buttons grouped together on a single line.
+ */
+.c-btn-group {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex; }
+  .c-btn-group > .c-btn:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+  .c-btn-group > .c-btn:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+  .c-btn-group > .c-btn:not(:first-child):not(:last-child) {
+    border-radius: 0; }
+  .c-btn-group > .c-btn + .c-btn {
+    border-left: 0; }
+
+/**
+ * Force button group to take full width.
+ */
+.c-btn-group--fullwidth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%; }
+  .c-btn-group--fullwidth > .c-btn {
+    width: 100%; }
+
+/* ==========================================================================
+   #BUTTONS
+   ========================================================================== */
+/**
+ * 1. Apply (c-btn--info) background if `c-btn--{style}` class isn't specified.
+ * 2. Align icon (if placed inside button) with text properly.
+ * 3. Add dropdown icon/arrow to button with `has-dropdown` class, it depends 
+ *    on (FontAwesome) icon font so make sure to modify it if you changed your 
+ *    base icon font.
+ * 4. Use `disabled` property on <button> elements, and `is-disabled` class on
+ *    <a> elements as they don't support `disabled` property.
+ */
+.c-btn {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.5rem 1.25rem;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: #1a91eb;
+  /* [1] */
+  color: #fff;
+  /* [1] */
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  vertical-align: middle;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea);
+  /* [1] */ }
+  .c-btn:hover, .c-btn:focus {
+    outline: 0;
+    color: #fff;
+    text-decoration: none; }
+  .c-btn i {
+    position: relative;
+    bottom: -1px;
+    /* [2] */
+    font-size: 16px; }
+  .c-btn.has-dropdown {
+    position: relative;
+    padding-right: 2.5rem; }
+    .c-btn.has-dropdown::after {
+      /* [3] */
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      margin-left: 1.25rem;
+      padding: 0.5rem 8px;
+      border-left: 1px solid;
+      border-color: inherit;
+      color: inherit;
+      font-family: "FontAwesome";
+      content: "\f107"; }
+  .c-btn.is-disabled, .c-btn:disabled {
+    /* [4] */
+    border-color: #e6eaee;
+    background: #f5f8fa;
+    color: rgba(53, 64, 82, 0.5); }
+    .c-btn.is-disabled:hover, .c-btn.is-disabled:focus, .c-btn:disabled:hover, .c-btn:disabled:focus {
+      border-color: #e6eaee;
+      background: #f5f8fa;
+      color: rgba(53, 64, 82, 0.5);
+      cursor: not-allowed; }
+
+.c-btn--fullwidth {
+  width: 100%; }
+
+/**
+ * 1. Reduce spacing between the icon and text in small buttons.
+ */
+.c-btn--small {
+  padding: 0.25rem 1.125rem;
+  font-size: 0.75rem; }
+  .c-btn--small i {
+    margin-right: 5px;
+    /* [1] */ }
+
+.c-btn--large {
+  padding: 0.5rem 1.875rem;
+  font-size: 1rem; }
+
+/* Style variants
+   ========================================================================== */
+/**
+ * Buttons have a simple, nice gradient on the background, we use 
+ * sass's `darken()` method to generate a dark shade of the requested color, 
+ * then we use our `linear-gradient` mixin to generate the gradient background.
+ */
+.c-btn--primary {
+  background: #475364;
+  background: -webkit-gradient(linear, left top, left bottom, from(#475364), to(#273142));
+  background: linear-gradient(to bottom, #475364, #273142);
+  border-color: #354052; }
+  .c-btn--primary:hover {
+    background: #3f4958;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3f4958), to(#151b24));
+    background: linear-gradient(to bottom, #3f4958, #151b24); }
+  .c-btn--primary:focus {
+    background: #3a4452;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3a4452), to(#12161e));
+    background: linear-gradient(to bottom, #3a4452, #12161e); }
+
+.c-btn--secondary {
+  background: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f2f4f7));
+  background: linear-gradient(to bottom, #fff, #f2f4f7);
+  border-color: #dfe3e9;
+  color: #354052; }
+  .c-btn--secondary:hover {
+    background: #fcfcfc;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#eceff3));
+    background: linear-gradient(to bottom, #fcfcfc, #eceff3);
+    color: #354052; }
+  .c-btn--secondary:focus {
+    background: #fafafa;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e9ecf1));
+    background: linear-gradient(to bottom, #fafafa, #e9ecf1);
+    color: #354052; }
+
+.c-btn--info {
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea);
+  border-color: #1a91eb; }
+  .c-btn--info:hover {
+    background: #1a98f7;
+    background: -webkit-gradient(linear, left top, left bottom, from(#1a98f7), to(#1485db));
+    background: linear-gradient(to bottom, #1a98f7, #1485db); }
+  .c-btn--info:focus {
+    background: #1094f7;
+    background: -webkit-gradient(linear, left top, left bottom, from(#1094f7), to(#137fd1));
+    background: linear-gradient(to bottom, #1094f7, #137fd1); }
+
+.c-btn--success {
+  background: #39b54a;
+  background: -webkit-gradient(linear, left top, left bottom, from(#39b54a), to(#34aa44));
+  background: linear-gradient(to bottom, #39b54a, #34aa44);
+  border-color: #249533; }
+  .c-btn--success:hover {
+    background: #34a544;
+    background: -webkit-gradient(linear, left top, left bottom, from(#34a544), to(#2f9a3e));
+    background: linear-gradient(to bottom, #34a544, #2f9a3e); }
+  .c-btn--success:focus {
+    background: #329e40;
+    background: -webkit-gradient(linear, left top, left bottom, from(#329e40), to(#2d933b));
+    background: linear-gradient(to bottom, #329e40, #2d933b); }
+
+.c-btn--fancy {
+  background: #886ce6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#886ce6), to(#7d5be2));
+  background: linear-gradient(to bottom, #886ce6, #7d5be2);
+  border-color: #7d5be2; }
+  .c-btn--fancy:hover {
+    background: #7a5be3;
+    background: -webkit-gradient(linear, left top, left bottom, from(#7a5be3), to(#6f4adf));
+    background: linear-gradient(to bottom, #7a5be3, #6f4adf); }
+  .c-btn--fancy:focus {
+    background: #7352e2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#7352e2), to(#6841dd));
+    background: linear-gradient(to bottom, #7352e2, #6841dd); }
+
+.c-btn--warning {
+  background: #fd9a18;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fd9a18), to(#f16911));
+  background: linear-gradient(to bottom, #fd9a18, #f16911);
+  border-color: #f16911; }
+  .c-btn--warning:hover {
+    background: #fd9104;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fd9104), to(#e0600d));
+    background: linear-gradient(to bottom, #fd9104, #e0600d); }
+  .c-btn--warning:focus {
+    background: #f48c02;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f48c02), to(#d75c0d));
+    background: linear-gradient(to bottom, #f48c02, #d75c0d); }
+
+.c-btn--danger {
+  background: #f95359;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f95359), to(#d35847));
+  background: linear-gradient(to bottom, #f95359, #d35847);
+  border-color: #d35847; }
+  .c-btn--danger:hover {
+    background: #f83f46;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f83f46), to(#cf4937));
+    background: linear-gradient(to bottom, #f83f46, #cf4937); }
+  .c-btn--danger:focus {
+    background: #f8353c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f8353c), to(#cb4331));
+    background: linear-gradient(to bottom, #f8353c, #cb4331); }
+
+/* ==========================================================================
+   #CARD
+   ========================================================================== */
+/**
+ * A simple component to apply card-like style, used with genearal widgets that 
+ * have sub-components in it.
+ */
+.c-card {
+  position: relative;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+/**
+ * 1. Display a scrollbar if the content of the card is larger than the 
+ *    card's width.
+ */
+.c-card--responsive {
+  overflow: auto;
+  /* [1] */ }
+
+/**
+ * 1. Align header's content vertically in the center
+ */
+.c-card__header {
+  padding: 1.5625rem 1.875rem;
+  border-bottom: 1px solid #e6eaee;
+  background-color: #fafbfc; }
+
+/**
+ * Remove default background-color of card's header
+ */
+.c-card__header--transparent {
+  background-color: transparent; }
+
+.c-card__title {
+  margin: 0;
+  font-size: 1.125rem; }
+
+.c-card__meta {
+  color: #7f8fa4;
+  font-size: 0.75rem; }
+
+.c-card__icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: -35px;
+  right: 0;
+  left: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  border-radius: 100%;
+  color: #fff;
+  font-size: 1.75rem;
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea); }
+  .c-card__icon:hover i {
+    color: inherit;
+    text-decoration: none; }
+
+.c-card__body {
+  padding: 1.875rem; }
+
+/* ==========================================================================
+   #CHOICES (Checkboxes & Radios)
+   ========================================================================== */
+/**
+ * Checkboxes & Radios are controlled with a simple class called `c-choice`
+ * because they are similar in styling, this class is used to share same 
+ * styles between them.
+ *
+ * EXAMPLE: 
+ *
+ * <div class="c-choice c-choice--checkbox">
+ *     <input class="c-choice__input" id="custom-checkbox" type="checkbox">
+ *     <label class="c-choice__label" for="custom-checkbox">Checkbox 1</label>
+ * </div>
+ */
+/**
+ * 1. Get rid of white space cause by using `inline-flex`.
+ * 
+ * Read More: https://goo.gl/ajXW52
+ */
+.c-choice {
+  margin: 0 0 0.9375rem 0;
+  color: #354052;
+  font-size: 0;
+  /* [1] */
+  font-weight: 400;
+  /**
+     * Disabled state
+     *
+     * NOTE: `disabled` attribute must be added to <input>
+     */ }
+  .c-choice.is-disabled .c-choice__label {
+    color: rgba(53, 64, 82, 0.5);
+    cursor: default; }
+    .c-choice.is-disabled .c-choice__label::before {
+      border-color: #dfe3e9;
+      background-color: #e6eaee; }
+
+/**
+ * 1. Hide default input and create a customized input.
+ * 2. Align the customized input with label.
+ */
+.c-choice__input {
+  /* [1] */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%); }
+  .c-choice__input + .c-choice__label {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #354052;
+    font-size: 0.875rem;
+    cursor: pointer; }
+  .c-choice__input + .c-choice__label::before {
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    /* [2] */
+    width: 16px;
+    height: 16px;
+    margin: 0 15px 0 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border: 1px solid #bbc5d5;
+    background-color: #fff;
+    color: #fff;
+    line-height: 15px;
+    text-align: center;
+    content: "";
+    visibility: visible;
+    /* [2] */ }
+
+/**
+ * Checkboxes
+ */
+.c-choice--checkbox .c-choice__input + .c-choice__label::before {
+  border-radius: 4px; }
+
+.c-choice--checkbox .c-choice__input:checked + .c-choice__label::before {
+  border-color: #1a91eb;
+  background-color: #1a98f7;
+  font-family: "FontAwesome";
+  font-size: 10px;
+  content: "\f00c"; }
+
+.c-choice--checkbox .c-choice__input:indeterminate + .c-choice__label::before {
+  border-color: #1a91eb;
+  background-color: #1a98f7;
+  font-family: "FontAwesome";
+  font-size: 10px;
+  content: "\f068"; }
+
+
+/**
+ * Radio buttons
+ */
+.c-choice--radio .c-choice__input + .c-choice__label::before {
+  border-radius: 100%; }
+
+.c-choice--radio .c-choice__input:checked + .c-choice__label::before {
+  border: 4px solid #39b54a;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 0 1px #34aa44;
+          box-shadow: 0 0 0 1px #34aa44; }
+
+/* ==========================================================================
+   #CLOSE
+   ========================================================================== */
+/**
+ * A small button for closing components, used with closable components 
+ * like alerts, modals. 
+ */
+.c-close {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.625rem;
+  line-height: 1;
+  opacity: 0.7;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+  .c-close:hover, .c-close:focus {
+    opacity: 1; }
+  .c-close:focus {
+    outline: 0; }
+
+/* ==========================================================================
+   #DROPDOWN
+   ========================================================================== */
+/**
+ * A wrapper for the dropdown
+ */
+.c-dropdown {
+  display: inline-block;
+  position: relative; }
+
+/**
+ * Dropdown Menu
+ * 
+ * 1. No matter what size is the dropdown toggle `dropdown-toggle` (a class from
+ *    bootstrap), dropdown menu should be positioned properly.
+ */
+.c-dropdown__menu {
+  position: absolute;
+  top: 100%;
+  /* [1] */
+  right: 0;
+  width: 9.375rem;
+  margin: 5px 0 0;
+  -webkit-transition: visibility 0.3s ease, opacity 0.3s ease;
+  transition: visibility 0.3s ease, opacity 0.3s ease;
+  border: 1px solid #dfe3e9;
+  border-radius: 4px;
+  background-color: #fff;
+  text-align: left;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  z-index: 400; }
+  .c-dropdown .c-dropdown__menu,
+  .dropdown .c-dropdown__menu {
+    opacity: 0;
+    visibility: hidden; }
+  .c-dropdown.show .c-dropdown__menu,
+  .dropdown.show .c-dropdown__menu {
+    opacity: 1;
+    visibility: visible; }
+
+/**
+ * A larger dropdown menu for dropdowns used in navbar.
+ */
+.c-dropdown__menu--large {
+  width: 18.75rem; }
+  .c-dropdown__menu--large .c-dropdown__item {
+    padding: 0.625rem 0.9375rem; }
+
+/**
+ * 1. Remove border from last item to prevent it from collapsing with dropdown
+ *    menu's last border.
+ */
+.c-dropdown__item {
+  display: block;
+  padding: 0.5rem 0.9375rem;
+  border-bottom: 1px solid #dfe3e9;
+  color: #354052;
+  font-size: 0.875rem;
+  font-weight: 400; }
+  .c-dropdown__item:hover {
+    background-color: #f2f4f7;
+    color: #2ea1f8;
+    text-decoration: none; }
+  .c-dropdown__item:last-child {
+    border-bottom: 0;
+    /* [1] */ }
+
+/* ==========================================================================
+   #FIELD
+   ========================================================================== */
+/**
+ * Form field `c-field` component is used as a wrapper for more complex inputs
+ * that contain an icon, addon, form feedback and form message.
+ *
+ * 1. Take up (full width - width of field addon).
+ */
+.c-field {
+  position: relative;
+  width: 100%; }
+  .c-field.has-addon-left, .c-field.has-addon-right {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap; }
+    .c-field.has-addon-left > .c-input, .c-field.has-addon-right > .c-input {
+      -ms-flex-preferred-size: calc(100% - $field-addon-width);
+          flex-basis: calc(100% - $field-addon-width);
+      /* [1] */ }
+  .c-field.has-addon-left > .c-field__addon {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+  .c-field.has-addon-left > .c-input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+  .c-field.has-addon-right > .c-field__addon {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+  .c-field.has-addon-right > .c-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+  .c-field.has-icon-left > .c-field__icon, .c-field.has-icon-right > .c-field__icon {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    color: #CED0DA;
+    font-size: 1.125rem; }
+  .c-field.has-icon-left > .c-input {
+    padding-left: 40px; }
+  .c-field.has-icon-left > .c-field__icon {
+    left: 15px; }
+  .c-field.has-icon-right > .c-input {
+    padding-right: 40px; }
+  .c-field.has-icon-right > .c-field__icon {
+    right: 15px; }
+
+/**
+ * Inline fields don't take up whole width 
+ *
+ * Used with search input in the navbar & toolbar.
+ */
+.c-field--inline {
+  width: 270px; }
+  @media (max-width: 768px) {
+    .c-field--inline {
+      width: 100%; } }
+
+/**
+ * Labels are used with inputs, always use labels with inputs for better 
+ * accesibility. Hide labels using `u-hidden-visually` to display it for 
+ * screen readers.
+ *
+ * USAGE: <label class="c-field__label u-hidden-visually"></label>
+ */
+.c-field__label {
+  display: block;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  margin: 0 0 0.3125rem 0;
+  color: #7f8fa4;
+  font-size: 0.875rem;
+  font-weight: 400; }
+
+/**
+ * Addon is an icon placed in box next to input, used as a visual indicator
+ */
+.c-field__addon {
+  background: #FFF;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#F2F4F7));
+  background: linear-gradient(to bottom, #FFF, #F2F4F7);
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-preferred-size: 2.625rem;
+      flex-basis: 2.625rem;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid #dfe3e9;
+  border-radius: 4px;
+  color: #CED0DA;
+  font-size: 1.125rem;
+  text-align: center; }
+
+/**
+ * Field message used as a helper note or feedback.
+ */
+.c-field__message {
+  display: inline-block;
+  margin: 0 0.3125rem 0 0;
+  padding: 0;
+  color: rgba(53, 64, 82, 0.5);
+  font-size: 0.75rem; }
+  .c-field__message > i {
+    margin-right: 0.3125rem; }
+
+/* ==========================================================================
+   #ICONS
+   ========================================================================== */
+/**
+ * Add rounded/circular box background to any icon.
+ *
+ * USAGE: 
+ *      
+ * <div class="c-icon c-icon--large c-icon--success">
+ *     <i class="fa fa-facebook"></i>
+ * </div>
+ */
+.c-icon {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  background: #2ea1f8;
+  color: #fff;
+  font-size: 1.25rem; }
+  .c-icon:hover {
+    color: #fff;
+    text-decoration: none; }
+
+.c-icon--circle {
+  border-radius: 100%; }
+
+/* Size variants
+   ========================================================================== */
+.c-icon--large {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem; }
+
+.c-icon--small {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem; }
+
+/* Style variants
+   ========================================================================== */
+.c-icon--success {
+  background: #39b54a;
+  background: -webkit-gradient(linear, left top, left bottom, from(#39b54a), to(#34aa44));
+  background: linear-gradient(to bottom, #39b54a, #34aa44); }
+
+.c-icon--info {
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea); }
+
+.c-icon--warning {
+  background: #fd9a18;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fd9a18), to(#f16911));
+  background: linear-gradient(to bottom, #fd9a18, #f16911); }
+
+.c-icon--danger {
+  background: #f95359;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f95359), to(#d35847));
+  background: linear-gradient(to bottom, #f95359, #d35847); }
+
+.c-icon--fancy {
+  background: #886ce6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#886ce6), to(#7d5be2));
+  background: linear-gradient(to bottom, #886ce6, #7d5be2); }
+
+/* ==========================================================================
+   #INPUTS
+   ========================================================================== */
+.c-input {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.59375rem 0.9375rem;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  border: 1px solid #dfe3e9;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #354052;
+  font-size: 0.875rem;
+  font-weight: 400;
+  resize: none; }
+  .c-input::-webkit-input-placeholder {
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    color: rgba(53, 64, 82, 0.5);
+    font-weight: 400;
+    opacity: 0.5; }
+  .c-input:-ms-input-placeholder {
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    color: rgba(53, 64, 82, 0.5);
+    font-weight: 400;
+    opacity: 0.5; }
+  .c-input::-ms-input-placeholder {
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    color: rgba(53, 64, 82, 0.5);
+    font-weight: 400;
+    opacity: 0.5; }
+  .c-input::placeholder {
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    color: rgba(53, 64, 82, 0.5);
+    font-weight: 400;
+    opacity: 0.5; }
+  .c-input:focus {
+    border-color: #2ea1f8;
+    outline: none; }
+    .c-input:focus::-webkit-input-placeholder {
+      opacity: 0.2; }
+    .c-input:focus:-ms-input-placeholder {
+      opacity: 0.2; }
+    .c-input:focus::-ms-input-placeholder {
+      opacity: 0.2; }
+    .c-input:focus::placeholder {
+      opacity: 0.2; }
+  .c-input.is-disabled, .c-input:disabled {
+    border-color: #dfe3e9;
+    background-color: #e6eaee;
+    color: rgba(53, 64, 82, 0.5);
+    cursor: not-allowed; }
+
+/**
+ * Textarea
+ */
+textarea.c-input {
+  min-height: 90px;
+  font-size: 0.875rem;
+  font-weight: 400; }
+
+/* State variants
+   ========================================================================== */
+.c-input--success {
+  border-color: #1bb934; }
+  .c-input--success:focus {
+    border-color: #1bb934; }
+
+.c-input--warning {
+  border-color: #fd9a18; }
+  .c-input--warning:focus {
+    border-color: #fd9a18; }
+
+.c-input--danger {
+  border-color: #ed1c24;
+  color: #ed1c24; }
+  .c-input--danger:focus {
+    border-color: #ed1c24;
+    color: #ed1c24; }
+
+/* ==========================================================================
+   #MODAL 
+   ========================================================================== */
+.modal-open {
+  overflow: hidden; }
+
+.c-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0 0.9375rem;
+  outline: 0;
+  z-index: 500; }
+  .modal-open .c-modal {
+    overflow-x: hidden;
+    overflow-y: auto; }
+
+/**
+ * 1. Allow scrolling when content's height is larger than viewport's height.
+ * 2. Set the default width of the modal to be medium.
+ */
+.c-modal__dialog {
+  position: relative;
+  max-width: 550px;
+  margin: 1.875rem auto; }
+  .c-modal.fade .c-modal__dialog {
+    -webkit-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both; }
+  .c-modal.show .c-modal__dialog {
+    -webkit-animation-name: move;
+            animation-name: move; }
+  .c-modal .c-modal__dialog {
+    max-width: 550px; }
+  .c-modal--xsmall .c-modal__dialog {
+    max-width: 350px; }
+  .c-modal--small .c-modal__dialog {
+    max-width: 450px; }
+  .c-modal--medium .c-modal__dialog {
+    max-width: 550px; }
+  .c-modal--large .c-modal__dialog {
+    max-width: 650px; }
+  .c-modal--xlarge .c-modal__dialog {
+    max-width: 750px; }
+  .c-modal--huge .c-modal__dialog {
+    max-width: 950px; }
+
+.c-modal__content {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  outline: 0;
+  overflow: hidden; }
+
+.c-modal__header {
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px 1.875rem; }
+
+.c-modal__title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.125rem; }
+
+.c-modal__close {
+  color: #fff;
+  font-size: 1.125rem;
+  cursor: pointer;
+  opacity: 0.8; }
+  .c-modal__close:hover {
+    color: #fff; }
+
+/**
+ * Use this clas to quicklu position the close icon relative 
+ * to its container, `c-modal__content`.
+ */
+.c-modal__close--absolute {
+  position: absolute;
+  top: 1.875rem;
+  right: 1.875rem;
+  z-index: 500; }
+  @media (max-width: 768px) {
+    .c-modal__close--absolute {
+      top: 0.9375rem; } }
+
+.c-modal__subheader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 30px;
+  background-color: #222C3C;
+  color: #fff; }
+  .c-modal__subheader p {
+    color: inherit; }
+
+/**
+ * Tab-style navigation inside modal subheader. When used, make sure to remove 
+ * default vertical padding from `c-modal__subheader`.
+ */
+.c-modal__subheader-tab {
+  color: #7f8fa4; }
+  .c-modal__subheader-tab:hover {
+    color: #fff;
+    text-decoration: none; }
+  .c-modal__subheader-tab.is-active {
+    padding: 0.9375rem 0;
+    border-bottom: 3px solid #2ea1f8;
+    color: #fff; }
+
+.c-modal__body {
+  padding: 1.875rem;
+  background-color: #fff;
+  overflow: hidden; }
+
+/**
+ * Apply max height to force the body of the modal to be scrolled. This class
+ * is used with (achievements) modal.
+ */
+.c-modal__body--maximized {
+  max-height: 450px;
+  overflow: auto; }
+
+.c-modal__footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.9375rem 1.875rem;
+  border-top: 1px solid #e6eaee;
+  background-color: #EFF3F6; }
+
+/** 
+ * Add a dark background to make modal dialog standout.
+ */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(29, 37, 49, 0.9);
+  z-index: 400; }
+  .modal-backdrop.fade {
+    opacity: 0; }
+  .modal-backdrop.show {
+    opacity: 0.9; }
+
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll; }
+
+/**
+ * Modal move animation
+ */
+@-webkit-keyframes move {
+  from {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+    opacity: 0; }
+  50% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1; } }
+
+@keyframes move {
+  from {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+    opacity: 0; }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1; } }
+
+/* ==========================================================================
+   #NAV
+   ========================================================================== */
+/**
+ * Nav sits within the main navbar area. It’s fully responsive as it holds 
+ * navigation items/links that will be collapsed, toggled in small 
+ * screens via `c-nav-toggle` component.
+ */
+.c-nav {
+  display: block;
+  /**
+     * Responsive Nav
+     *
+     * 1. Remove extra margin when `u-mr-auto` utility is used. 
+     */ }
+  @media (max-width: 768px) {
+    .c-nav {
+      position: relative;
+      -webkit-box-flex: 1;
+          -ms-flex: 1 0 100%;
+              flex: 1 0 100%;
+      -webkit-box-ordinal-group: 3;
+          -ms-flex-order: 2;
+              order: 2;
+      margin-top: 0.9375rem;
+      margin-right: -0.9375rem !important;
+      /* [1] */
+      margin-left: -0.9375rem;
+      border-top: 1px solid #e6eaee;
+      /**
+         * Bootstrap classes used to show and hide nav.
+         * This behaviour depends on collapse.js plugin.
+         */ }
+      .c-nav.collapse {
+        display: none; }
+      .c-nav.show {
+        display: block; }
+      .c-nav.collapsing {
+        position: relative;
+        height: 0;
+        -webkit-transition: height 0.6s;
+        transition: height 0.6s;
+        overflow: hidden; } }
+
+.c-nav__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+/** 
+ * 1. Allow positioning dropdown menus inside nav items.
+ */
+.c-nav__item {
+  position: relative;
+  /* [1] */
+  margin: 0 40px 0 0; }
+  @media (max-width: 768px) {
+    .c-nav__item {
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+      margin-right: 0;
+      padding: 15px;
+      border-bottom: 1px solid #e6eaee; } }
+  .c-nav__item:last-child {
+    margin-right: 0; }
+    @media (max-width: 768px) {
+      .c-nav__item:last-child {
+        padding-bottom: 5px;
+        border-bottom: 0; } }
+
+.c-nav__link {
+  color: #9FA9BA;
+  font-size: 0.875rem;
+  font-weight: 400; }
+  .c-nav__link:hover {
+    text-decoration: none; }
+  .c-nav__link.is-active {
+    color: #2ea1f8; }
+  @media (max-width: 768px) {
+    .c-nav__link {
+      display: block;
+      color: #354052;
+      font-size: 1rem; } }
+
+/* Nav Toggle
+   ========================================================================== */
+/**
+ * Nav toggle is the popular hamburger-like icon that would show/hide `c-nav` 
+ * via javascript through `js-nav-toggle` to toggle `is-open` class.
+ * 
+ * 1. Remove default button styles.
+ * 2. Show only on small screens, hide on large screen.
+ */
+.c-nav-toggle {
+  display: none;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 0 0 0 0.9375rem;
+  /* [1] */
+  padding: 0;
+  /* [1] */
+  border: 0;
+  /* [1] */
+  outline: none;
+  background-color: transparent;
+  /* [1] */
+  cursor: pointer; }
+  @media (max-width: 768px) {
+    .c-nav-toggle {
+      display: block;
+      /* [2] */ } }
+
+/**
+ * The hamburger icon itself, 3 bars stacked on top of each other. 
+ */
+.c-nav-toggle__bar {
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 4px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  border-radius: 4px;
+  background-color: #354052; }
+  .c-nav-toggle__bar:first-child {
+    -webkit-transform: translateY(-6px);
+            transform: translateY(-6px); }
+  .c-nav-toggle__bar:last-child {
+    -webkit-transform: translateY(6px);
+            transform: translateY(6px); }
+
+/* ==========================================================================
+   #NAVBAR
+   ========================================================================== */
+/**
+ * The site's main page header, used as a wrapper for its sub-components.
+ */
+.c-navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  min-width: 100%;
+  min-height: 70px;
+  padding: 13px 30px;
+  border-bottom: 1px solid #E6EAEE;
+  background-color: #fff; }
+  @media (max-width: 768px) {
+    .c-navbar {
+      padding: 0.625rem 0.9375rem; } }
+
+/**
+ * Set a fixed width for search input when placed in navbar.
+ */
+.c-navbar__search {
+  width: 270px !important; }
+
+/**
+ * 1. Custom width, height is specififed for proper alignment, adding your own 
+ *    brand/logo image will require custom styles for proper alignment.
+ * 2. On small screens, seperate logo/brand from other navbar components as 
+ *    navbar links would be collapsed.
+ */
+.c-navbar__brand {
+  display: inline-block;
+  width: 44px;
+  /* [1] */
+  height: 44px;
+  /* [1] */
+  margin: 0 20px 0 0; }
+  @media (max-width: 768px) {
+    .c-navbar__brand {
+      margin-right: auto;
+      /* [2] */ } }
+
+.c-navbar__title {
+  margin: 0;
+  padding: 0;
+  font-size: 1.125rem; }
+
+/* Style variants
+   ========================================================================== */
+/**
+ * Use `c-navbar--inverse` for dark background colors.
+ *
+ */
+.c-navbar--inverse {
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea); }
+  .c-navbar--inverse .c-nav,
+  .c-navbar--inverse .c-nav__item {
+    border-color: #53b2f9; }
+  .c-navbar--inverse .c-nav__link {
+    color: #fff; }
+  .c-navbar--inverse .c-avatar.has-dropdown::after {
+    color: #fff; }
+  .c-navbar--inverse .c-nav-toggle__icon,
+  .c-navbar--inverse .c-nav-toggle__icon::before,
+  .c-navbar--inverse .c-nav-toggle__icon::after {
+    background-color: #fff;
+    opacity: 0.95; }
+
+/* ==========================================================================
+   #NOTIFICATIONS
+   ========================================================================== */
+/**
+ * 1. Allow notification to have a dropdown menu.
+ * 2. Fix additional space added by positioning number absolutely.
+ */
+.c-notification {
+  display: inline-block;
+  position: relative;
+  /* [1] */
+  margin-right: 0.625rem;
+  /* [2] */ }
+
+.c-notification__icon {
+  color: #7f8fa4;
+  font-size: 20px; }
+
+/**
+ * 1. Align number with notifcation icon properly.
+ */
+.c-notification__number {
+  display: inline-block;
+  position: absolute;
+  top: -3px;
+  /* [1] */
+  right: -0.625rem;
+  /* [1] */
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 20px;
+  background-color: #FF7800;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 20px;
+  text-align: center; }
+
+/* ==========================================================================
+   #PAGINATION
+   ========================================================================== */
+/**
+ * 1. Use flex utilitites with `c-pagination` for proper alignement of its
+ *    children.
+ */
+.c-pagination {
+  /* [1] */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 15px;
+  text-align: center; }
+
+/**
+ * 1. Remove wierd space between list items.
+ */
+.c-pagination__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  /* [1] */ }
+
+.c-pagination__item {
+  display: inline-block;
+  margin-left: -1px;
+  /* [1] */ }
+  .c-pagination__item:first-child .c-pagination__control {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+  .c-pagination__item:last-child .c-pagination__control {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+
+/**
+ * 1. Line height of pagination control should equal its height for proper
+ *    vertical alignment.
+ */
+.c-pagination__control {
+  display: block;
+  height: 2.1875rem;
+  /* [1] */
+  padding: 0 16px;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #CED0DA;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 2.1875rem;
+  /* [1] */
+  text-align: center;
+  /**
+     * 1. You may resize this icon if you used another icon font.
+     */ }
+  .c-pagination__control i {
+    position: relative;
+    bottom: -1px;
+    -webkit-transition: color .15s;
+    transition: color .15s;
+    color: #CED0DA;
+    font-size: 16px;
+    /* [1] */ }
+  .c-pagination__control:hover {
+    color: #354052;
+    text-decoration: none; }
+    .c-pagination__control:hover i {
+      color: #354052; }
+
+.c-pagination__link {
+  display: block;
+  height: 2.1875rem;
+  padding: 0 16px;
+  border: 1px solid #e6eaee;
+  background-color: #fff;
+  color: rgba(53, 64, 82, 0.5);
+  font-size: 14px;
+  line-height: 2.1875rem;
+  text-align: center; }
+  .c-pagination__link.is-active {
+    color: #354052; }
+  .c-pagination__link:hover {
+    color: #354052;
+    text-decoration: none; }
+
+.c-pagination__counter {
+  display: inline-block;
+  margin: 0;
+  padding: 8px 15px;
+  color: #7f8fa4;
+  vertical-align: middle; }
+
+/* ==========================================================================
+   #POPOVERS
+   ========================================================================== */
+.c-popover {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 18.75rem;
+  padding: 0.9375rem 20px;
+  border-radius: 4px;
+  background-clip: padding-box;
+  background-color: #1d2531;
+  color: #fff;
+  text-align: center;
+  z-index: 400;
+  word-wrap: break-word;
+  /**
+     * 1. (bs-popover-*) classes are inserted by bootstrap's popover plugin, we 
+     *    customize these classes for better compatibility with Dashboard UI Kit.
+     */ }
+  .c-popover .arrow {
+    display: none; }
+  .c-popover::before {
+    position: absolute;
+    border: 6px solid transparent;
+    content: " "; }
+  .c-popover.fade {
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    opacity: 0; }
+    .c-popover.fade.show {
+      opacity: 1; }
+  .c-popover.bs-popover-top {
+    /* [1] */
+    margin-bottom: 0.9375rem; }
+    .c-popover.bs-popover-top::before {
+      top: 100%;
+      left: 50%;
+      -webkit-transform: translate(-50%, 0);
+              transform: translate(-50%, 0);
+      border-top-color: #1d2531; }
+  .c-popover.bs-popover-bottom {
+    /* [1] */
+    margin-top: 0.9375rem; }
+    .c-popover.bs-popover-bottom::before {
+      bottom: 100%;
+      left: 50%;
+      -webkit-transform: translate(-50%, 0);
+              transform: translate(-50%, 0);
+      border-bottom-color: #1d2531; }
+  .c-popover.bs-popover-right {
+    /* [1] */
+    margin-left: 0.9375rem; }
+    .c-popover.bs-popover-right::before {
+      top: 50%;
+      right: 100%;
+      -webkit-transform: translate(0, -50%);
+              transform: translate(0, -50%);
+      border-right-color: #1d2531; }
+  .c-popover.bs-popover-left {
+    /* [1] */
+    margin-right: 0.9375rem; }
+    .c-popover.bs-popover-left::before {
+      top: 50%;
+      left: 100%;
+      -webkit-transform: translate(0, -50%);
+              transform: translate(0, -50%);
+      border-left-color: #1d2531; }
+
+/* ==========================================================================
+   #PROGRESS
+   ========================================================================== */
+.c-progress {
+  display: block;
+  width: 100%;
+  height: 20px;
+  margin: 0 0 15px 0;
+  border-radius: 20px;
+  background-color: #E2E7EE; }
+
+/**
+ * 1. Default (info) background-color would be applied, if class 
+ *    `c-progress--[color]` isn't specified.
+ */
+.c-progress__bar {
+  position: relative;
+  height: 100%;
+  border-radius: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  background: #2DA1F8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2DA1F8), to(#1991EB));
+  background: linear-gradient(to bottom, #2DA1F8, #1991EB);
+  /* [1] */ }
+
+/* Size variants
+   ========================================================================== */
+.c-progress--xsmall {
+  height: 2px; }
+
+.c-progress--small {
+  height: 4px; }
+
+.c-progress--medium {
+  height: 8px; }
+
+/* Style variants
+   ========================================================================== */
+.c-progress--danger .c-progress__bar {
+  background: #f95359;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f95359), to(#d35847));
+  background: linear-gradient(to bottom, #f95359, #d35847); }
+
+.c-progress--info .c-progress__bar {
+  background: #2DA1F8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2DA1F8), to(#1991EB));
+  background: linear-gradient(to bottom, #2DA1F8, #1991EB); }
+
+.c-progress--primary .c-progress__bar {
+  background: #475364;
+  background: -webkit-gradient(linear, left top, left bottom, from(#475364), to(#273142));
+  background: linear-gradient(to bottom, #475364, #273142); }
+
+.c-progress--success .c-progress__bar {
+  background: #5AD946;
+  background: -webkit-gradient(linear, left top, left bottom, from(#5AD946), to(#2BB415));
+  background: linear-gradient(to bottom, #5AD946, #2BB415); }
+
+.c-progress--warning .c-progress__bar {
+  background: #F8CF5D;
+  background: -webkit-gradient(linear, left top, left bottom, from(#F8CF5D), to(#FDC018));
+  background: linear-gradient(to bottom, #F8CF5D, #FDC018); }
+
+.c-progress--fancy .c-progress__bar {
+  background: #9D90E4;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9D90E4), to(#8261E6));
+  background: linear-gradient(to bottom, #9D90E4, #8261E6); }
+
+/* Multi-level progress bars
+   ========================================================================== */
+.c-progress__bar .c-progress__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: red;
+  z-index: 200; }
+
+/* ==========================================================================
+   #RANGES
+   ========================================================================== */
+.c-range {
+  width: 100%;
+  outline: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+
+.c-range--inline {
+  width: 96px; }
+
+.c-range::-webkit-slider-thumb {
+  position: relative;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  cursor: pointer;
+  -webkit-appearance: none;
+          appearance: none;
+  background: #2DA1F8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2DA1F8), to(#1991EB));
+  background: linear-gradient(to bottom, #2DA1F8, #1991EB); }
+
+.c-range::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 1px;
+  background-color: #CED0DA; }
+
+/* ==========================================================================
+   #SWITCH
+   ========================================================================== */
+/**
+ * 1. Radius of `toggle` should be equal to radius of `c-switch`.
+ * 2. The small circle that move to the right and left.
+ * 3. Calculation: (width of switch bar) - (toggle's width + 2px )
+ * 4. Don't allow active state on a disabled switch.
+ */
+.c-switch {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer; }
+  .c-switch::before {
+    display: inline-block;
+    position: relative;
+    width: 48px;
+    height: 26px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border: 1px solid #e6eaee;
+    border-radius: 83px;
+    background-color: #dfe3e9;
+    content: " "; }
+  .c-switch::after {
+    /* [2] */
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border-radius: 83px;
+    /* [1] */
+    background-color: #fff;
+    content: " "; }
+  .c-switch.is-active::before {
+    background-color: #34aa44; }
+  .c-switch.is-active::after {
+    left: 25px;
+    /* [3] */ }
+  .c-switch.is-disabled {
+    cursor: not-allowed; }
+    .c-switch.is-disabled::after {
+      opacity: 0.5; }
+    .c-switch.is-disabled.is-active {
+      /* [4] */ }
+      .c-switch.is-disabled.is-active::before {
+        background-color: #dfe3e9; }
+      .c-switch.is-disabled.is-active::after {
+        right: 2px; }
+
+/**
+ * 1. Hide input to replace it with switch-style input
+ */
+.c-switch__input {
+  display: none;
+  /* [1] */ }
+
+.c-switch__label {
+  margin: 0 0 0 0.625rem;
+  color: #354052;
+  font-size: 0.875rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+/* ==========================================================================
+   #SWITCH
+   ========================================================================== */
+/**
+ * 1. Radius of `toggle` should be equal to radius of `c-switch`.
+ * 2. The small circle that move to the right and left.
+ * 3. Calculation: (width of switch bar) - (toggle's width + 2px )
+ * 4. Don't allow active state on a disabled switch.
+ */
+.c-switch {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer; }
+  .c-switch::before {
+    display: inline-block;
+    position: relative;
+    width: 48px;
+    height: 26px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border: 1px solid #e6eaee;
+    border-radius: 83px;
+    background-color: #dfe3e9;
+    content: " "; }
+  .c-switch::after {
+    /* [2] */
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border-radius: 83px;
+    /* [1] */
+    background-color: #fff;
+    content: " "; }
+  .c-switch.is-active::before {
+    background-color: #34aa44; }
+  .c-switch.is-active::after {
+    left: 25px;
+    /* [3] */ }
+  .c-switch.is-disabled {
+    cursor: not-allowed; }
+    .c-switch.is-disabled::after {
+      opacity: 0.5; }
+    .c-switch.is-disabled.is-active {
+      /* [4] */ }
+      .c-switch.is-disabled.is-active::before {
+        background-color: #dfe3e9; }
+      .c-switch.is-disabled.is-active::after {
+        right: 2px; }
+
+/**
+ * 1. Hide input to replace it with switch-style input
+ */
+.c-switch__input {
+  display: none;
+  /* [1] */ }
+
+.c-switch__label {
+  margin: 0 0 0 0.625rem;
+  color: #354052;
+  font-size: 0.875rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+/* ==========================================================================
+   #TABLES
+   ========================================================================== */
+/**
+ * 1. The border-collapse CSS property specifies that the table's borders are 
+ *    collapsed and it means that adjacent cells share borders.
+ */
+.c-table {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid #E6EAEE;
+  border-radius: 4px;
+  background-color: #fff;
+  border-collapse: collapse;
+  /* [1] */ }
+
+/**
+ * Responsive Tables
+ *
+ * Wrap any table with one of these classes to make it responsive at certain
+ * breakpoint.
+ *
+ * 1. Wrap your table with this class `c-table-responsive` if the table's width 
+ * is larger than 1200px.
+ */
+.c-table-responsive {
+  /* [1] */
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; }
+  .c-table-responsive .c-table {
+    display: block;
+    overflow-y: hidden; }
+
+@media (max-width: 576px) {
+  .c-table-responsive\@mobile {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; }
+    .c-table-responsive\@mobile .c-table {
+      display: block;
+      overflow-y: hidden; } }
+
+@media (max-width: 768px) {
+  .c-table-responsive\@tablet {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; }
+    .c-table-responsive\@tablet .c-table {
+      display: block;
+      overflow-y: hidden; } }
+
+@media (max-width: 992px) {
+  .c-table-responsive\@desktop {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; }
+    .c-table-responsive\@desktop .c-table {
+      display: block;
+      overflow-y: hidden; } }
+
+@media (max-width: 1200px) {
+  .c-table-responsive\@wide {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; }
+    .c-table-responsive\@wide .c-table {
+      display: block;
+      overflow-y: hidden; } }
+
+/**
+ * Use `c-table--zebra` to add zebra-styling to table rows inside the table.
+ */
+.c-table--zebra tbody tr:nth-of-type(odd) {
+  background-color: rgba(230, 234, 238, 0.3); }
+
+/**
+ * Highlight table row on hover.
+ */
+.c-table--highlight tbody tr:hover {
+  background-color: rgba(230, 234, 238, 0.3); }
+
+.c-table--fixed {
+  table-layout: fixed; }
+
+/**
+ * Table title/caption
+ * <caption> 
+ */
+.c-table__title {
+  position: relative;
+  padding: 25px 30px;
+  border: 1px solid #e6eaee;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  background-color: #fff;
+  color: #354052;
+  font-size: 24px;
+  text-align: left; }
+  .c-table__title small {
+    display: inline-block;
+    margin-left: 10px;
+    color: #7f8fa4;
+    font-size: 14px; }
+    .c-table__title small::before {
+      display: inline-block;
+      position: relative;
+      bottom: -2px;
+      width: 1px;
+      height: 14px;
+      margin-right: 12px;
+      background-color: #DFE3E9;
+      content: ""; }
+
+/**
+ * A small icon in table title used to perform general action on table like
+ * downloading table content as a report.
+ */
+.c-table__title-action {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: #AFB4BB;
+  font-size: 22px; }
+
+/**
+ * Table Head
+ *
+ * Slimmer version of table's head with less sapcing and darker background
+ */
+.c-table__head--slim {
+  padding: 0;
+  background-color: #F5F8FA; }
+  .c-table__head--slim .c-table__cell {
+    padding: 10px 0 10px 30px; }
+
+/**
+ * Table Row
+ */
+.c-table__row {
+  border-top: 1px solid #E6EAEE;
+  /* [1] */
+  border-bottom: 1px solid #E6EAEE;
+  /* [1] */ }
+  .c-table__row:last-child {
+    border-bottom: 0; }
+
+.c-table__row--success,
+.c-table__row--danger,
+.c-table__row--info,
+.c-table__row--warning {
+  border-left: 3px solid; }
+
+.c-table__row--success {
+  border-left-color: #1bb934; }
+
+.c-table__row--danger {
+  border-left-color: #ed1c24; }
+
+.c-table__row--info {
+  border-left-color: #2ea1f8; }
+
+.c-table__row--warning {
+  border-left-color: #fd9a18; }
+
+/**
+ * Table Cell
+ */
+.c-table__cell {
+  padding: 20px 0 20px 30px;
+  color: #354052;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle; }
+  .c-table__cell:last-child {
+    padding-right: 1.875rem; }
+
+.c-table__cell--head {
+  color: #7f8fa4;
+  font-size: 0.875rem;
+  font-weight: 500; }
+
+/**
+ * Table cell with image
+ *
+ * 2. Use flexbox to make sure all table-cell content is vertically centered.
+ */
+.c-table__cell--img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* [2] */
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+/* ==========================================================================
+   #TABS
+   ========================================================================== */
+/**
+ * A wrapper for tabs navigation and content.
+ */
+/**
+ * 1. Works as a wrapper for tabs navigation links.
+ */
+.c-tabs__list {
+  /* [1] */
+  padding: 20px 30px;
+  border: 1px solid #dfe3e9;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #fff; }
+  .c-tabs__list li {
+    display: inline-block; }
+
+.c-tabs__link {
+  margin: 0 30px 0 0;
+  padding: 0 0 21px 0;
+  color: #7f8fa4;
+  font-size: 1rem; }
+  .c-tabs__link:hover {
+    color: #354052;
+    text-decoration: none; }
+  .c-tabs__link.is-active, .c-tabs__link.active {
+    border-bottom: 2px solid #2ea1f8;
+    color: #2d3848;
+    font-weight: 600; }
+
+/**
+ * Splitted-style of tabs navigation list
+ */
+.c-tabs__list--splitted {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  border: 0;
+  background-color: transparent; }
+  .c-tabs__list--splitted .c-tabs__item {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin: 0; }
+  .c-tabs__list--splitted .c-tabs__link {
+    display: inline-block;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin-right: 4px;
+    padding: 15px 30px;
+    border: 1px solid #dfe3e9;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#F4F7FA));
+    background: linear-gradient(to bottom, #fff, #F4F7FA); }
+    .c-tabs__list--splitted .c-tabs__link.is-active, .c-tabs__list--splitted .c-tabs__link.active {
+      padding: 20px 35px;
+      border-bottom-color: #fff;
+      background: #fff;
+      font-size: 18px; }
+
+.c-tabs__pane {
+  display: none;
+  margin: 0;
+  padding: 20px 30px;
+  border: 1px solid #dfe3e9;
+  border-top: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: #fff;
+  color: #354052; }
+  .c-tabs__pane.is-active, .c-tabs__pane.active {
+    display: block; }
+
+/* ==========================================================================
+   #TOGGLE
+   ========================================================================== */
+/**
+ * Toggles are a pair of buttons useful for (Yes/No)-like questions.
+ *
+ * 1. Remove `is-active` styles when `c-toggle` is disabled
+ */
+.c-toggle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 45px;
+  cursor: pointer; }
+  .c-toggle.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.5; }
+    .c-toggle.is-disabled .c-toggle__btn.is-active {
+      /* [1] */
+      border-color: #E7E9ED;
+      background-color: #FAFBFC;
+      color: #565F6D; }
+
+.c-toggle__btn {
+  width: 50%;
+  height: 45px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  border: 1px solid #E7E9ED;
+  border-radius: 4px;
+  background-color: #FAFBFC;
+  color: #565F6D;
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: inherit; }
+  .c-toggle__btn:nth-child(1) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+  .c-toggle__btn:nth-child(2) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+  .c-toggle__btn.is-active {
+    border-color: #1a91eb;
+    background-color: #2ea1f8;
+    color: #fff; }
+
+.c-toggle__label {
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  cursor: inherit; }
+
+/**
+ * 1. Hide default radio button
+ */
+.c-toggle__input {
+  display: none;
+  /* [1] */
+  width: 100%;
+  height: 100%; }
+
+/* ==========================================================================
+   #TOOLBAR
+   ========================================================================== */
+.c-toolbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px 30px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+          box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07); }
+  @media (max-width: 768px) {
+    .c-toolbar {
+      padding: 20px 15px; } }
+
+.c-toolbar__title {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  color: #354052;
+  font-size: 18px; }
+  .c-toolbar__title.has-divider::after {
+    display: block;
+    width: 1px;
+    height: 15px;
+    margin: 0 13px;
+    background-color: #DFE3E9;
+    content: " "; }
+
+.c-toolbar__meta {
+  margin: 0;
+  color: #7F8FA4;
+  font-size: 14px; }
+
+.c-toolbar__icon {
+  display: block;
+  color: #CED0DA;
+  font-size: 18px; }
+  .c-toolbar__icon.is-active {
+    color: #2ea1f8; }
+  .c-toolbar__icon.has-divider::after {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    width: 1px;
+    height: 15px;
+    margin: 0 13px;
+    background-color: #DFE3E9;
+    content: " "; }
+
+.c-toolbar__link {
+  color: #7F8FA4;
+  font-size: 14px; }
+  .c-toolbar__link.has-dropdown::after {
+    display: inline-block;
+    margin-left: 10px;
+    color: inherit;
+    font-family: "FontAwesome";
+    font-size: 12px;
+    content: "\f3d0"; }
+
+/**
+ * Toolbar (tab-like) Navigation
+ */
+@media only screen and (max-width: 576px) {
+  .c-toolbar__nav {
+    margin-right: auto;
+    margin-left: auto; } }
+
+.c-toolbar__nav-item {
+  margin-right: 25px;
+  padding: 0 0 27px;
+  color: #7f8fa4;
+  font-size: 1rem; }
+  .c-toolbar__nav-item:last-child {
+    margin-right: 0; }
+  .c-toolbar__nav-item:hover {
+    color: #354052;
+    text-decoration: none; }
+  .c-toolbar__nav-item.is-active {
+    border-bottom: 2px solid #2ea1f8;
+    color: #2d3848;
+    font-weight: 600; }
+  @media only screen and (max-width: 576px) {
+    .c-toolbar__nav-item {
+      padding-bottom: 20px; } }
+
+/**
+ * Toolbar stats
+ *
+ * Numbers & states placed in the toolbar, used in performance.html page
+ */
+.c-toolbar__state {
+  border-right: 1px solid #e6eaee;
+  text-align: center; }
+  @media (max-width: 768px) {
+    .c-toolbar__state {
+      margin-bottom: 1.875rem;
+      border-right: 0; }
+      .c-toolbar__state:nth-child(3), .c-toolbar__state:nth-child(4) {
+        margin-bottom: 0; } }
+  .c-toolbar__state:last-child {
+    border-right: 0; }
+
+.c-toolbar__state-number {
+  margin-bottom: 0;
+  font-size: 1.75rem; }
+
+.c-toolbar__state-title {
+  color: #7f8fa4;
+  font-size: 0.875rem;
+  text-transform: uppercase; }
+
+/* ==========================================================================
+   #TOOLTIPS
+   ========================================================================== */
+/**
+ * Simple, css-only based tooltips.
+ *
+ * 1. Prevent other components from overrideing tooltip's line-height.
+ * 2. Get tooltip text from `aria-label` and place it using `content` property.
+ */
+.c-tooltip {
+  position: relative; }
+  .c-tooltip::after {
+    position: absolute;
+    max-height: 5rem;
+    padding: 0.625rem 0.9375rem;
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    border-radius: 4px;
+    background-color: #1d2531;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    /* [1] */
+    text-align: center;
+    text-transform: none;
+    white-space: nowrap;
+    content: attr(aria-label);
+    /* [2] */
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    z-index: 200; }
+  .c-tooltip::before {
+    position: absolute;
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    border: 6px solid transparent;
+    content: " ";
+    opacity: 0;
+    visibility: hidden; }
+  .c-tooltip:hover::before, .c-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible; }
+
+/* Direction variants
+   ========================================================================== */
+.c-tooltip--top::after {
+  bottom: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -12px);
+          transform: translate(-50%, -12px); }
+
+.c-tooltip--top::before {
+  bottom: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  border-top-color: #1d2531; }
+
+.c-tooltip--bottom::after {
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 12px);
+          transform: translate(-50%, 12px); }
+
+.c-tooltip--bottom::before {
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  border-bottom-color: #1d2531; }
+
+.c-tooltip--right::after {
+  top: 50%;
+  left: 100%;
+  -webkit-transform: translate(12px, -50%);
+          transform: translate(12px, -50%); }
+
+.c-tooltip--right::before {
+  top: 50%;
+  left: 100%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  border-right-color: #1d2531; }
+
+.c-tooltip--left::after {
+  top: 50%;
+  right: 100%;
+  -webkit-transform: translate(-12px, -50%);
+          transform: translate(-12px, -50%); }
+
+.c-tooltip--left::before {
+  top: 50%;
+  right: 100%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  border-left-color: #1d2531; }
+
+/* ==========================================================================
+   #PROFILE
+   ========================================================================== */
+.c-profile-card {
+  margin: 0 0 0.9375rem;
+  padding: 0.625rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.c-profile-card__cover {
+  height: 100px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  overflow: hidden; }
+  .c-profile-card__cover > img {
+    display: block; }
+
+/**
+ * Profile card main content.
+ */
+.c-profile-card__user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  top: -20px; }
+
+.c-profile-card__avatar {
+  position: relative;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 75px;
+  height: 75px;
+  margin: 0 0.9375rem 0 0;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  overflow: hidden; }
+  .c-profile-card__avatar > img {
+    display: block; }
+
+.c-profile-card__name {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 0.9375rem 0 0;
+  font-size: 1rem;
+  line-height: 1.25;
+  /* 20px / 16px */ }
+
+.c-profile-card__username {
+  display: block;
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+.c-profile-card__stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .c-profile-card__stats:last-child {
+    margin-right: 0; }
+
+/**
+ * Profile Card stats/numbers like: followers, following..
+ */
+.c-profile-card__state {
+  margin-right: 30px;
+  color: #7f8fa4;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.375;
+  text-transform: uppercase; }
+  .c-profile-card__state:last-child {
+    margin-right: 0; }
+
+.c-profile-card__state-number {
+  display: block;
+  margin: 0;
+  color: #354052;
+  font-size: 1.25rem;
+  font-weight: 600; }
+
+.c-profile-card__social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 0.625rem 12px;
+  border-bottom: 1px solid #e6eaee; }
+
+/**
+ * Use brand color utilities to set the background-color of every icon.
+ *
+ * Example: 
+ *      <a class="c-profile__social-icon u-bg-dribbble" href="#">
+ *          <i class="fa fa-dribbble"></i>
+ *      </a>
+ */
+.c-profile-card__social-icon {
+  display: block;
+  width: 38px;
+  height: 38px;
+  border-radius: 100%;
+  color: #fff;
+  line-height: 38px;
+  text-align: center; }
+  .c-profile-card__social-icon:hover {
+    color: #fff; }
+
+/**
+ * A list of meta of information about the profile.
+ */
+.c-profile-card__meta {
+  padding: 0.9375rem 0.625rem 0; }
+  .c-profile-card__meta:last-child {
+    margin-bottom: 0; }
+
+.c-profile-card__meta-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 0 0.625rem;
+  color: #354052;
+  font-size: 0.875rem; }
+  .c-profile-card__meta-item > i {
+    margin-right: 0.75rem;
+    color: #7f8fa4;
+    font-size: 1rem; }
+
+/* ==========================================================================
+   #EVENT
+   ========================================================================== */
+.c-event {
+  margin-bottom: 1.875rem;
+  padding: 0.625rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background: #fff; }
+
+.c-event__img {
+  position: relative;
+  margin-bottom: 0.9375rem;
+  border-radius: 3px;
+  overflow: hidden; }
+  .c-event__img > img {
+    display: block; }
+
+.c-event__status {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  padding: 5px 12px;
+  border-radius: 4px;
+  background: rgba(49, 53, 63, 0.25);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase; }
+
+/** 
+ * Meta information about the event
+ */
+.c-event__meta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 5px;
+  padding: 0 10px 0 20px; }
+
+.c-event__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500; }
+
+.c-event__place {
+  display: block;
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 0.75rem; }
+
+/**
+ * Align event button with the event title
+ */
+.c-event__btn {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+/* ==========================================================================
+   #SIDEBAR
+   ========================================================================== */
+/** 
+ * NOTE: The layout, width of the sidebar is controlled by `o-page__sidebar` in
+ *       `o-page` object, found in `objects/_objects.page.scss`.
+ */
+.c-sidebar {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding-bottom: 1.875rem;
+  background-color: #222C3C;
+  overflow: auto;
+  z-index: 200; }
+  .c-sidebar::-webkit-scrollbar {
+    /* [2] */
+    width: 6px;
+    background-color: transparent; }
+  .c-sidebar::-webkit-scrollbar-thumb {
+    /* [2] */
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.5); }
+
+/**
+ * 1. Height of sidebar brand should equal the height of the navbar for perfect 
+ *    alignment.
+ * 2. You can change the height of brand/logo image as you want, but its height
+ *    shouldn't be more than navbar's height.
+ */
+.c-sidebar__brand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 70px;
+  /* [1] */
+  padding-left: 1.875rem;
+  border-bottom: 1px solid #2a3547;
+  color: #e6eaee;
+  font-size: 16px;
+  vertical-align: middle; }
+  .c-sidebar__brand:hover {
+    color: #e6eaee;
+    text-decoration: none; }
+
+.c-sidebar__brand-img {
+  display: inline-block;
+  height: 44px;
+  /* [2] */
+  margin-right: 0.625rem; }
+
+.c-sidebar__title {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-left: 30px;
+  color: #7f8fa4;
+  font-size: 12px;
+  text-transform: uppercase; }
+
+.c-sidebar__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #2A3547; }
+
+/**
+ * Sidebar naviagtion menu
+ */
+.c-sidebar__item {
+  position: relative;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  /**
+     * 1. Add small arrow to `c-menu__link` when `c-menu__item` has sub-menu.
+     */ }
+  .c-sidebar__item.has-submenu > .c-sidebar__link::after {
+    /* [1] */
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 30px;
+    color: #B7C0CD;
+    font-family: "FontAwesome";
+    content: "\f0d7"; }
+  .c-sidebar__item.is-open {
+    background-color: #1D2531;
+    -webkit-box-shadow: inset 3px 0 0 0 #00A8FF;
+            box-shadow: inset 3px 0 0 0 #00A8FF; }
+    .c-sidebar__item.is-open > .c-sidebar__link::after {
+      content: "\f0d8"; }
+
+.c-sidebar__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0 10px 30px;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+  color: #B7C0CD;
+  font-size: .875rem; }
+  .c-sidebar__link.is-active {
+    background-color: #1D2531;
+    -webkit-box-shadow: inset 3px 0 0 0 #00A8FF;
+            box-shadow: inset 3px 0 0 0 #00A8FF; }
+  .c-sidebar__link:hover {
+    color: #fff;
+    text-decoration: none; }
+
+/**
+ * Sub Menu
+ */
+.c-sidebar__submenu {
+  /**
+     * Bootstrap classes used to show and hide sidebar submenu.
+     * This behaviour depends on collapse.js plugin.
+     */ }
+  .c-sidebar__submenu.collapse {
+    display: none; }
+  .c-sidebar__submenu.show {
+    display: block; }
+  .c-sidebar__submenu.collapsing {
+    position: relative;
+    height: 0;
+    -webkit-transition: height 0.3s;
+    transition: height 0.3s;
+    overflow: hidden; }
+
+/* Style Variation - Light Sidebar
+   ========================================================================== */
+.c-sidebar--light {
+  border-right: 1px solid #e6eaee;
+  background-color: #fff;
+  /**
+     * 1. Add a slight shadow to the sidebar to make it popup a little bit
+     *    on small screens.
+     */ }
+  .c-sidebar--light .c-sidebar__divider {
+    background-color: #e6eaee; }
+  .c-sidebar--light .c-sidebar__brand {
+    border-color: #e6eaee;
+    color: #354052; }
+  .c-sidebar--light .c-sidebar__item.has-submenu > .c-sidebar__link::after {
+    /* [1] */
+    color: #B7C0CD; }
+  .c-sidebar--light .c-sidebar__item.is-open {
+    background-color: #FAFBFC; }
+  .c-sidebar--light .c-sidebar__link {
+    color: #7f8fa4; }
+    .c-sidebar--light .c-sidebar__link.is-active {
+      background-color: transparent;
+      color: #354052; }
+      .c-sidebar--light .c-sidebar__link.is-active i {
+        color: #2ea1f8; }
+      .c-sidebar--light .c-sidebar__link.is-active:hover {
+        color: #2ea1f8; }
+    .c-sidebar--light .c-sidebar__link:hover {
+      color: #354052; }
+  @media (max-width: 992px) {
+    .c-sidebar--light {
+      -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+              box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+      /* [1] */ } }
+
+/* Sidebar toggle
+   ========================================================================== */
+/**
+ * An icon the is used to toggle (show/hide) sidebar on small screen, you will 
+ * find this component placed in the main navbar.
+ */
+.c-sidebar-toggle {
+  display: none;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 0 0.9375rem 0 0;
+  /* [1] */
+  padding: 0;
+  /* [1] */
+  border: 0;
+  /* [1] */
+  outline: none;
+  background-color: transparent;
+  /* [1] */
+  cursor: pointer; }
+  @media (max-width: 992px) {
+    .c-sidebar-toggle {
+      display: block;
+      /* [2] */ } }
+
+/**
+ * The hamburger icon itself, 3 bars stacked on top of each other. 
+ */
+.c-sidebar-toggle__bar {
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 4px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  border-radius: 4px;
+  background-color: #354052; }
+  .c-sidebar-toggle__bar:first-child {
+    -webkit-transform: translateY(-6px);
+            transform: translateY(-6px); }
+  .c-sidebar-toggle__bar:last-child {
+    -webkit-transform: translateY(6px);
+            transform: translateY(6px); }
+
+/* ==========================================================================
+   #PROJECT
+   ========================================================================== */
+/**
+ * Used in projects-board.html page.
+ */
+.c-project {
+  margin-bottom: 1.875rem;
+  padding: 0.625rem 0.625rem 20px;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background: #fff; }
+  .c-project:hover .c-project__profile:nth-child(n) {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+
+.c-project__img {
+  position: relative;
+  margin-bottom: 0.75rem;
+  border-radius: 4px;
+  overflow: hidden; }
+  .c-project__img > img {
+    display: block; }
+
+.c-project__title {
+  margin: 0;
+  padding-left: 0.625rem;
+  font-size: 1rem;
+  font-weight: 500; }
+
+.c-project__status {
+  display: block;
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 0.75rem; }
+
+.c-project__team {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1.25rem;
+  padding-left: 0.625rem; }
+
+/**
+ * On hover, expand project profiles.
+ * Maximum number of profiles is 4, more profiles should be hidden.
+ *
+ * 1. Hover animation will only work on large viewports.
+ */
+.c-project__profile {
+  display: block;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-right: 0.3125rem;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  text-align: center; }
+  .c-project__profile:nth-child(2) {
+    -webkit-transform: translateX(-20px);
+            transform: translateX(-20px); }
+  .c-project__profile:nth-child(3) {
+    -webkit-transform: translateX(calc(-20px * 2));
+            transform: translateX(calc(-20px * 2)); }
+  .c-project__profile:nth-child(4) {
+    -webkit-transform: translateX(calc(-20px * 3));
+            transform: translateX(calc(-20px * 3)); }
+  .c-project__profile:nth-child(5) {
+    -webkit-transform: translateX(calc(-20px * 4));
+            transform: translateX(calc(-20px * 4)); }
+  @media (max-width: 1200px) {
+    .c-project__profile:nth-child(n) {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      /* [1] */ } }
+  .c-project__profile img {
+    border-radius: 100%; }
+
+.c-project__profile--btn {
+  border-radius: 100%;
+  background-color: #e6eaee;
+  color: #7f8fa4;
+  font-size: 0.875rem;
+  line-height: 32px; }
+  .c-project__profile--btn:hover {
+    background-color: #1bb934;
+    color: #fff; }
+
+/* ==========================================================================
+   #POST
+   ========================================================================== */
+/**
+ * Used in: news-feed.html
+ */
+.c-post {
+  width: 100%;
+  min-width: 100%;
+  margin: 0 0 0.9375rem;
+  border-radius: 4px; }
+
+.c-post__content {
+  width: 100%;
+  min-width: 100%;
+  min-height: 120px;
+  padding: 0.625rem 1.875rem 0.625rem 20px;
+  border: 1px solid #e6eaee;
+  background-color: #fff;
+  color: #354052;
+  font-size: 0.875rem;
+  overflow-y: auto;
+  resize: none; }
+
+.c-post__toolbar {
+  padding: 12px;
+  border: 1px solid #e6eaee;
+  border-top: 0;
+  background-color: #fafbfc;
+  overflow: hidden; }
+
+/**
+ * Customize submit button
+ */
+.c-post__submit {
+  margin-right: 12px;
+  padding-right: 0.8rem;
+  padding-left: 0.8rem; }
+
+.c-post__time {
+  position: relative;
+  padding: 0 0 0 12px;
+  /**
+     * Vertical divier to seperate (submit button) from (post time).
+     */ }
+  .c-post__time::before {
+    display: inline-block;
+    position: absolute;
+    top: -24px;
+    left: 0;
+    width: 1px;
+    height: 70px;
+    background-color: #e6eaee;
+    content: ""; }
+  .c-post__time i {
+    margin-right: 5px; }
+  @media (max-width: 576px) {
+    .c-post__time {
+      display: none; } }
+
+/* ==========================================================================
+   #STREAM
+   ========================================================================== */
+/**
+ * Used in news-feed.html page
+ */
+.c-stream {
+  margin: 0 0 1.875rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.c-stream-item {
+  padding: 0.9375rem 20px 0.9375rem 12px;
+  border-bottom: 1px solid #e6eaee; }
+
+/**
+ * Stream item header
+ */
+.c-stream-item__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0.3125rem; }
+
+.c-stream-item__name {
+  color: #354052;
+  font-weight: 400; }
+
+.c-stream-item__username {
+  margin: 0 0 0 0.3125rem;
+  color: #7f8fa4;
+  font-size: 0.875rem;
+  font-weight: 400;
+  /**
+     * 1. Remove text-decoration from username when the link is hovered.
+     */ }
+  .c-stream-item__name:hover .c-stream-item__username {
+    /* [1] */
+    display: inline-block;
+    text-decoration: none; }
+
+.c-stream-item__time {
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+/**
+ * Stream item gallery
+ */
+.c-stream-item__gallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0.9375rem; }
+  .c-stream-item__gallery > img {
+    width: 49%;
+    border-radius: 4px; }
+
+/**
+ * A list of icons to perform certain actions like: (love, comment, reply).
+ */
+.c-stream-item__actionlist {
+  display: inline-block; }
+
+.c-stream-item__action {
+  display: inline-block;
+  margin: 0 1.875rem 0 0;
+  color: #7f8fa4;
+  vertical-align: middle; }
+  .c-stream-item__action:hover {
+    text-decoration: none; }
+  .c-stream-item__action > i {
+    margin-right: 0.3125rem;
+    font-size: 0.875rem; }
+
+.c-strem-item__actiontoggle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  bottom: -0.1875rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #7f8fa4; }
+
+/* ==========================================================================
+   #GALLERY CARD
+   ========================================================================== */
+.c-gallery-card {
+  margin: 0 0 1.875rem;
+  padding: 10px;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background: #fff; }
+
+.c-gallery-card__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 0 0.9375rem; }
+
+.c-gallery-card__title {
+  display: inline-block;
+  margin: 0;
+  font-size: 1rem; }
+
+.c-gallery-card__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+/**
+ * 1. Set width of gallery image to be half of its container minus (5px) as 
+ *    a spacing between images.
+ */
+.c-gallery-card__img {
+  width: calc(50% - 5px);
+  /* [1] */
+  margin: 0 0 0.625rem;
+  border-radius: 4px; }
+
+/* ==========================================================================
+   #STATE
+   ========================================================================== */
+.c-state {
+  position: relative;
+  margin-bottom: 1.875rem;
+  padding: 0.9375rem;
+  border-radius: 4px; }
+
+.c-state__title {
+  margin: 0.625rem 0 0 0.9375rem;
+  color: #fff;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.7; }
+
+.c-state__number {
+  display: block;
+  margin: 0 0 20px 0.9375rem;
+  color: #fff;
+  font-size: 2.25rem;
+  font-weight: 400; }
+
+.c-state__status {
+  margin: 0;
+  padding: 0.625rem 0 0 0.9375rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase; }
+
+/**
+ * 1. Equals padding of `.c-state`.
+ */
+.c-state__indicator {
+  display: inline-block;
+  position: absolute;
+  top: 0.9375rem;
+  /* [1] */
+  right: 0.9375rem;
+  /* [1] */
+  color: #fff;
+  font-size: 38px;
+  opacity: 0.2; }
+  .c-state__indicator > i {
+    display: block; }
+
+/* Style variants
+   ========================================================================== */
+/**
+ * 1. If `c-state--{color}` isn't specified, (info) background color will 
+ *    be applied.
+ */
+.c-state,
+.c-state--info {
+  /* [1] */
+  background-color: #3B517C; }
+
+.c-state--success {
+  background-color: #66B92E; }
+
+.c-state--warning {
+  background-color: #DA932C; }
+
+.c-state--danger {
+  background-color: #D65B4A; }
+
+/* ==========================================================================
+   #TODO
+   ========================================================================== */
+/**
+ * 1. Get rid of white space cause by using `inline-flex`.
+ * 
+ * Read More: https://goo.gl/ajXW52
+ */
+.c-todo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1.25rem 1.875rem;
+  border-top: 1px solid #e6eaee;
+  font-size: 0;
+  /* [1] */
+  font-weight: 400;
+  /**
+     * Disabled state
+     *
+     * NOTE: `disabled` attribute must be added to <input>
+     */ }
+  .c-todo.is-disabled .c-todo__label {
+    color: rgba(53, 64, 82, 0.5);
+    cursor: default; }
+    .c-todo.is-disabled .c-todo__label::before {
+      border-color: #dfe3e9;
+      background-color: #e6eaee;
+      text-decoration: none; }
+
+/**
+ * 1. Hide default input and create a customized input.
+ * 2. Align the customized input with label.
+ */
+.c-todo__input {
+  /* [1] */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%); }
+  .c-todo__input + .c-todo__label {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    position: relative;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-left: 1.5625rem;
+    color: #354052;
+    font-size: 0.875rem;
+    cursor: pointer; }
+    .c-todo.is-completed .c-todo__input + .c-todo__label {
+      text-decoration: line-through;
+      opacity: .5; }
+  .c-todo__input + .c-todo__label::before {
+    display: inline-block;
+    position: absolute;
+    top: 2px;
+    /* [2] */
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin: 0 15px 0 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border: 1px solid #b7c0cd;
+    border-radius: 100%;
+    background-color: #fff;
+    color: #fff;
+    font-family: "FontAwesome";
+    font-size: 10px;
+    line-height: 15px;
+    text-align: center;
+    text-decoration: none;
+    content: "";
+    visibility: visible;
+    /* [2] */ }
+  .c-todo__input:checked + .c-todo__label::before {
+    border-color: #b7c0cd;
+    background-color: #b7c0cd;
+    color: #fff;
+    content: "\f00c"; }
+
+/* Todo Stream
+   ========================================================================== */
+/**
+ * Todo task displayed as a stream. Used in active-projects.html page.
+ */
+.c-todo-stream {
+  display: block;
+  position: relative; }
+  .c-todo-stream::before {
+    position: absolute;
+    top: 7.5%;
+    left: 7px;
+    width: 2px;
+    height: 85%;
+    background-color: #b7c0cd;
+    content: "";
+    opacity: 0.2; }
+  .c-todo-stream .c-todo {
+    margin-bottom: 15px;
+    padding: 0;
+    border-top: 0; }
+
+/* ==========================================================================
+   #MESSANGER
+   ========================================================================== */
+/**
+ * Components used to build messanger page.
+ *
+ * Table of content:
+ *
+ * 1. Messages
+ * 2. Chat 
+ */
+/* 1. Messages
+   ========================================================================== */
+/**
+ * A container for the messanger app.
+ */
+.c-messanger {
+  background-color: #fff; }
+
+/**
+ * A container for inbox messages.
+ */
+.c-messages {
+  height: calc(100vh - (69px + 70px));
+  border-right: 1px solid #e6eaee;
+  overflow-y: auto; }
+  .c-messages::-webkit-scrollbar {
+    /* [2] */
+    width: 6px;
+    background-color: transparent; }
+  .c-messages::-webkit-scrollbar-thumb {
+    /* [2] */
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.5); }
+
+.c-message {
+  display: block;
+  position: relative;
+  padding: 15px 20px 15px 30px;
+  border-bottom: 1px solid #e6eaee;
+  color: #354052; }
+  .c-message:hover {
+    text-decoration: none; }
+  .c-message.is-active {
+    border-left: 3px solid #53b2f9; }
+
+.c-message__title {
+  margin: 0;
+  color: #354052;
+  font-size: 16px; }
+
+.c-message__title-meta {
+  display: block;
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+.c-message__time {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #7f8fa4;
+  font-size: 14px; }
+
+/**
+ * Make room for messages counter
+ */
+.c-message__snippet {
+  margin: 10px 40px 0 0;
+  /* [1] */ }
+
+.c-message__counter {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  background-color: #53b2f9;
+  color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center; }
+
+/* 2. Chat
+   ========================================================================== */
+/**
+ * A container for chat.
+ */
+.c-chat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  overflow-y: auto;
+  height: calc(100vh - (69px + 70px)); }
+
+.c-chat__body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  overflow-y: auto; }
+  .c-chat__body::-webkit-scrollbar {
+    /* [2] */
+    width: 6px;
+    background-color: transparent; }
+  .c-chat__body::-webkit-scrollbar-thumb {
+    /* [2] */
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.5); }
+
+.c-chat__post {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 60px;
+          flex: 0 0 60px; }
+
+.c-chat__message {
+  padding: 20px 80px 20px 30px; }
+
+.c-chat__message-author {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #354052;
+  font-size: 1rem;
+  font-weight: 500; }
+
+.c-chat__message-time {
+  margin-left: 8px;
+  color: #7f8fa4;
+  font-size: 14px; }
+
+.c-chat__message-content {
+  margin: 0;
+  color: #354052; }
+
+/**
+ * Chat Divider
+ */
+.c-chat__divider {
+  display: block;
+  position: relative;
+  color: #7f8fa4;
+  font-size: 0.875rem;
+  text-align: center; }
+  .c-chat__divider::before, .c-chat__divider::after {
+    position: absolute;
+    top: 50%;
+    width: 42%;
+    height: 1px;
+    background-color: #e6eaee;
+    content: ""; }
+  .c-chat__divider::before {
+    left: 0; }
+  .c-chat__divider::after {
+    right: 0; }
+  .c-chat__divider.is-active {
+    color: #1A91EB; }
+    .c-chat__divider.is-active::before, .c-chat__divider.is-active::after {
+      background-color: #1A91EB; }
+
+/**
+  * Chat Message Composer
+  *
+  * a form to compose a new message.
+  */
+.c-chat__composer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: calc(100% - 60px);
+  height: 60px;
+  margin: 0 auto 20px;
+  padding: 0;
+  background-color: #fff; }
+  .c-chat__composer .c-field__addon {
+    padding: 5px 25px; }
+
+/* ==========================================================================
+   #CREDIT CARD
+   ========================================================================== */
+/**
+ * Used in account-settings.html page
+ */
+.c-credit-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 196px; }
+
+.c-credit-card__card {
+  position: absolute;
+  width: 50%;
+  margin-right: 1.875rem;
+  margin-left: 1.875rem;
+  padding: 1.5625rem 1.875rem;
+  border: 2px solid #2ea1f8;
+  border-radius: 8px;
+  background-color: #fff; }
+
+.c-credit-card__logo {
+  margin-bottom: 0.9375rem; }
+
+.c-credit-card__number {
+  margin-bottom: 0.3125rem;
+  color: #354052;
+  font-size: 1.25rem;
+  font-weight: 600; }
+
+.c-credit-card__status {
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+.c-credit-card__user {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  width: 100%;
+  max-height: 195px;
+  padding: 30px 0;
+  padding-left: calc(50% + 60px);
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.c-credit-card__user-title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600; }
+
+.c-credit-card__user-meta {
+  margin: 0 0 5px;
+  font-size: 0.875rem; }
+
+/* ==========================================================================
+   #SEARCH RESULT
+   ========================================================================== */
+.c-search-result {
+  position: relative;
+  margin-bottom: 1.875rem;
+  padding: 1.25rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.c-search-result__avatar {
+  margin-right: 1.25rem; }
+
+.c-search-result__title {
+  margin-bottom: 0;
+  font-size: 1rem; }
+
+.c-search-result__meta {
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+.c-search-result__actionlist {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem; }
+
+.c-search-result__action {
+  display: inline-block;
+  margin-left: 0.625rem;
+  float: left; }
+  .c-search-result__action > a {
+    color: #b7c0cd; }
+
+.c-search-result__gallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 20px; }
+
+.c-search-result__gallery-item {
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
+  border-radius: 4px;
+  overflow: hidden; }
+  .c-search-result__gallery-item > a {
+    display: block;
+    line-height: 0; }
+
+/* ==========================================================================
+   #SEARCH FORM
+   ========================================================================== */
+/**
+ * Used in browse.html page.
+ */
+.c-search-form {
+  margin-bottom: 1.875rem;
+  padding: 1.25rem;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.c-search-form__label {
+  margin-bottom: 0.625rem;
+  color: #7f8fa4;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.c-search-form__section {
+  margin-bottom: 0.9375rem; }
+
+/* ==========================================================================
+   #GRAPH CARD
+   ========================================================================== */
+.c-graph-card {
+  margin: 0 0 1.875rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden; }
+
+.c-graph-card__content {
+  padding: 1.875rem 1.875rem 0; }
+
+.c-graph-card__title {
+  margin: 0;
+  font-size: 1.125rem; }
+
+.c-graph-card__date {
+  margin: 0 0 0.625rem;
+  color: #7f8fa4;
+  font-size: 0.75rem; }
+
+.c-graph-card__number {
+  margin: 0;
+  color: #354052;
+  font-size: 2.5rem;
+  font-weight: 300; }
+
+.c-graph-card__status {
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+.c-graph-card__chart {
+  position: relative;
+  margin: 0;
+  padding: 1.875rem; }
+
+.c-graph-card__footer {
+  height: 100%;
+  padding: 0.9375rem 1.875rem;
+  border-top: #e6eaee solid 1px;
+  background-color: #fafbfc; }
+
+/* ==========================================================================
+   #DIVIDER
+   ========================================================================== */
+.c-divider {
+  display: block;
+  position: relative;
+  height: 1px;
+  background-color: #dfe3e9;
+  color: #7f8fa4;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  /**
+     * When divider has a text in its center.
+     */ }
+  .c-divider.has-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    background-color: transparent; }
+    .c-divider.has-text::before, .c-divider.has-text::after {
+      width: 42%;
+      height: 1px;
+      background-color: #dfe3e9;
+      content: ""; }
+  @media (max-width: 768px) {
+    .c-divider::before, .c-divider::after {
+      width: 30%; } }
+
+.c-divider--small {
+  font-size: 0.875rem;
+  text-transform: none; }
+  .c-divider--small.has-text::before, .c-divider--small.has-text::after {
+    width: 25%;
+    height: 1px;
+    background-color: #dfe3e9; }
+
+/* ==========================================================================
+   #PROGRESS CARD
+   ========================================================================== */
+.c-progress-card {
+  margin: 0 0 1.875rem;
+  padding: 1.875rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.c-progress-card__title {
+  margin: 0;
+  font-size: 1.125rem; }
+
+.c-progress-card__date {
+  margin: 0 0 1.875rem;
+  color: #7f8fa4;
+  font-size: 0.75rem; }
+
+.c-progress-card__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 0 0.9375rem; }
+  .c-progress-card__item:last-child {
+    margin-bottom: 0; }
+
+.c-progress-card__label {
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+.c-progress-card__progress {
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
+  margin: 0; }
+
+.c-progress-card__legends {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.c-progress-card__legend {
+  display: inline-block;
+  width: 10px;
+  height: 2px;
+  margin: 0 0.625rem 0 0;
+  vertical-align: middle; }
+
+/* ==========================================================================
+   #PANEL
+   ========================================================================== */
+/**
+ * Panels acts like a secondry sidebar, usually placed on the opposite side of
+ * sidebar, in the case of Dashboad's design it's placed in the right.
+ *
+ * 1. Remove top border from panel to avoid collapsing with navbar's border.
+ */
+.c-panel {
+  height: 100%;
+  margin: 0;
+  padding: 1.875rem;
+  border: 1px solid #e6eaee;
+  border-top: 0;
+  /* [1] */
+  background-color: #fff; }
+
+.c-panel__title {
+  margin-bottom: 1.875rem;
+  font-size: 1rem; }
+
+.c-panel__widget::after {
+  display: block;
+  height: 1px;
+  margin: 1.875rem 0;
+  background-color: #e6eaee;
+  content: " ";
+  opacity: 0.5; }
+
+.c-panel__widget:last-child::after {
+  content: none; }
+
+/* ==========================================================================
+   #STATE CARD
+   ========================================================================== */
+.c-state-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 1.875rem;
+  padding: 1.875rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.c-state-card__icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin-right: 1.25rem;
+  border-radius: 100%;
+  background-color: #b7c0cd;
+  color: #fff;
+  font-size: 1.25rem;
+  text-align: center;
+  /**
+     * Icon's inside border
+     */ }
+  .c-state-card__icon::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 52px;
+    height: 52px;
+    margin: auto;
+    border: 2px solid #fff;
+    border-radius: 100%;
+    content: "";
+    opacity: 0.2; }
+
+/**
+ * Icon style variations
+ */
+.c-state-card__icon--info {
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea); }
+
+.c-state-card__icon--fancy {
+  background: #886ce6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#886ce6), to(#7d5be2));
+  background: linear-gradient(to bottom, #886ce6, #7d5be2); }
+
+.c-state-card__icon--warning {
+  background: #fd9a18;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fd9a18), to(#f16911));
+  background: linear-gradient(to bottom, #fd9a18, #f16911); }
+
+.c-state-card__icon--success {
+  background: #39b54a;
+  background: -webkit-gradient(linear, left top, left bottom, from(#39b54a), to(#34aa44));
+  background: linear-gradient(to bottom, #39b54a, #34aa44); }
+
+.c-state-card__number {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 400; }
+
+.c-state-card__status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 15px;
+  right: -20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  background-color: #bbc5d5;
+  color: #fff;
+  font-size: 0.625rem;
+  text-align: center; }
+
+.c-state-card__meta {
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase; }
+
+/* ==========================================================================
+   #SUMMARY
+   ========================================================================== */
+/**
+ * Used in invoices.html page
+ */
+.c-summary {
+  position: relative;
+  padding: 0 0 1.875rem 1.875rem; }
+  .c-summary.has-divider::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    content: "";
+    background: #e6eaee;
+    background: -webkit-gradient(linear, left bottom, left top, from(#e6eaee), to(#fff));
+    background: linear-gradient(to top, #e6eaee, #fff); }
+    @media (max-width: 768px) {
+      .c-summary.has-divider::after {
+        top: initial;
+        bottom: 15px;
+        width: 100%;
+        height: 1px; } }
+
+.c-summary__title {
+  margin-bottom: 0.9375rem;
+  color: #7f8fa4;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase; }
+
+.c-summary__number {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  font-size: 1.875rem;
+  font-weight: 400; }
+
+.c-summary__status {
+  display: block;
+  position: absolute;
+  top: 0.9375rem;
+  right: -1.25rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  background-color: #bbc5d5;
+  color: #fff;
+  font-size: 0.625rem;
+  line-height: 14px;
+  text-align: center; }
+
+.c-summary__meta {
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase; }
+
+/* ==========================================================================
+   #CHART
+   ========================================================================== */
+/**
+ * This works as a wrapper for charts.
+ */
+.c-chart-container {
+  position: relative;
+  height: 95px; }
+
+.c-chart__title {
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 0.75rem; }
+
+/* ==========================================================================
+   #PROJECT CARD
+   ========================================================================== */
+/**
+ * used in `home-overview.html`
+ */
+.c-project-card {
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden; }
+
+.c-project-card__img {
+  display: block; }
+
+.c-project-card__head {
+  padding: 1.25rem 1.875rem;
+  border-bottom: 1px solid #e6eaee; }
+
+.c-project-card__title {
+  margin: 0;
+  font-size: 1rem; }
+
+.c-project-card__info {
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 0.75rem; }
+
+.c-project-card__meta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1.25rem 1.875rem; }
+
+/* ==========================================================================
+   #MENU
+   ========================================================================== */
+/**
+ * A list of horizontal or vertical links, and unlike `c-menu` component, this 
+ * component shouldn't be used inside a sidebar or any other component.
+ */
+.c-menu__title {
+  margin: 0 0 0.625rem 20px;
+  color: #7f8fa4;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase; }
+
+.c-menu__link {
+  display: inline-block;
+  width: 100%;
+  padding: 5px 0 5px 20px;
+  border-radius: 4px;
+  color: #354052;
+  font-size: 0.875rem;
+  font-weight: 400; }
+  .c-menu__link:hover {
+    text-decoration: none; }
+  .c-menu__link.is-active {
+    background-color: #2ea1f8;
+    color: #fff; }
+
+.c-menu__icon {
+  margin-right: 0.625rem;
+  color: #7f8fa4; }
+  .c-menu__link:hover .c-menu__icon {
+    color: #2ea1f8; }
+
+/* ==========================================================================
+   #BOARDS
+   ========================================================================== */
+/**
+ * Boards consist of 2 main components:
+ *
+ * 1. Board 
+ * 2. Task
+ *
+ * NOTE: We didn't seperate these components into their own files as it's 
+ * intended to be used togther.
+ */
+/* 1. Board
+   ========================================================================== */
+.c-board {
+  position: relative;
+  margin-bottom: 3.125rem; }
+
+.c-board__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0.625rem; }
+
+.c-board__title {
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 600; }
+
+.c-board__actions {
+  display: block;
+  position: relative; }
+  .c-board__actions > a {
+    color: #bbc5d5; }
+
+/**
+ * A wrapper for board's tasks.
+ */
+.c-board__content {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fafbfc;
+  overflow-y: auto; }
+
+.c-board__btn {
+  display: block;
+  position: absolute;
+  bottom: -16px;
+  left: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 32px;
+  text-align: center;
+  z-index: 200;
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea); }
+  .c-board__btn:hover {
+    color: #fff; }
+
+/**
+ * Add a board button
+ */
+.c-add-board {
+  display: block;
+  width: 100%;
+  margin-top: 2.125rem;
+  margin-bottom: 1.875rem;
+  padding: 0.9375rem 1.25rem;
+  border-radius: 4px;
+  background-color: #b7c0cd;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  opacity: .8; }
+  .c-add-board > i {
+    margin-right: 0.625rem; }
+  .c-add-board:hover {
+    color: #fff;
+    text-decoration: none;
+    opacity: 1; }
+
+/**
+ * Board style variations
+ *
+ * Add a border with a specific color to indicate the status of the board.
+ */
+.c-board--info .c-board__content,
+.c-board--success .c-board__content,
+.c-board--warning .c-board__content,
+.c-board--danger .c-board__content {
+  border-top: 3px solid #2ea1f8;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }
+
+.c-board--info .c-board__content {
+  border-top-color: #2ea1f8; }
+
+.c-board--success .c-board__content {
+  border-top-color: #1bb934; }
+
+.c-board--warning .c-board__content {
+  border-top-color: #fd9a18; }
+
+.c-board--danger .c-board__content {
+  border-top-color: #ed1c24; }
+
+/* 2. Task
+   ========================================================================== */
+.c-task {
+  margin-bottom: 0.625rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+  overflow: hidden; }
+  .c-task:last-of-type {
+    margin-bottom: 0; }
+
+.c-task__img {
+  display: block; }
+
+.c-task__content {
+  margin: 0;
+  padding: 0.9375rem 0.625rem 0.625rem;
+  color: #354052;
+  font-size: 0.875rem;
+  font-weight: 600; }
+
+.c-task__indicators {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 0 0.625rem 0.625rem; }
+
+.c-task__indicator {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 0.9375rem;
+  color: #7f8fa4;
+  font-size: 0.75rem;
+  font-weight: 600; }
+  .c-task__indicator > i {
+    display: inline-block;
+    margin-right: 0.3125rem;
+    color: #bbc5d5;
+    font-size: 1rem; }
+
+/**
+ * Task style variations
+ *
+ * Add a border with a specific color to indicate the status of the task.
+ */
+.c-task--info,
+.c-task--success,
+.c-task--warning,
+.c-task--danger {
+  border-left: 3px solid #2ea1f8;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.c-task--info {
+  border-left-color: #2ea1f8; }
+
+.c-task--success {
+  border-left-color: #1bb934; }
+
+.c-task--warning {
+  border-left-color: #fd9a18; }
+
+.c-task--danger {
+  border-left-color: #ed1c24; }
+
+/* ==========================================================================
+   #PLANS 
+   ========================================================================== */
+.c-plan {
+  margin: 0 5px 30px;
+  padding: 40px 20px 25px;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: transparent;
+  text-align: left; }
+
+.c-plan__img {
+  position: absolute;
+  top: -20px; }
+
+.c-plan__title {
+  margin: 0;
+  color: #7f8fa4;
+  font-size: 12px;
+  text-transform: uppercase; }
+
+.c-plan__price {
+  margin: 0;
+  font-size: 28px; }
+
+.c-plan__note {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.c-plan__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 15px 0;
+  background-color: #e6eaee; }
+
+.c-plan__feature {
+  margin-bottom: 5px;
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+/* ==========================================================================
+   #FILEITEM
+   ========================================================================== */
+.c-fileitem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.9375rem 0;
+  border-bottom: 1px solid #e6eaee; }
+  .c-fileitem:first-child {
+    padding-top: 0; }
+  .c-fileitem:last-child {
+    padding-bottom: 0;
+    border-bottom: 0; }
+
+.c-fileitem__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.c-fileitem__img {
+  max-width: 60px;
+  margin-right: 20px;
+  border-radius: 4px;
+  overflow: hidden; }
+  .c-fileitem__img > img {
+    display: block; }
+
+.c-fileitem__name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #354052;
+  font-weight: 600; }
+  .c-fileitem__name > img {
+    margin-right: 8px; }
+
+.c-fileitem__date {
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+  .c-fileitem__date i {
+    margin: 0 5px; }
+
+/* ==========================================================================
+   #OVERVIEW CARD
+   ========================================================================== */
+/**
+ * Not really a reusable component, but it fixes responsive issues with 
+ * `Dashboard Overview` section in index.html page.
+ */
+@media (max-width: 768px) {
+  .c-overview-card .u-border-right,
+  .c-overview-card .u-border-left {
+    border: 0 !important; } }
+
+@media (max-width: 768px) {
+  .c-overview-card__section {
+    margin-bottom: 30px; }
+    .c-overview-card__section h3 {
+      font-size: 1.25rem; } }
+
+/* ==========================================================================
+   #INVOICE
+   ========================================================================== */
+.c-invoice {
+  position: relative;
+  padding: 6.25rem 6.25rem 1.875rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #354052;
+  -webkit-box-shadow: 0 0 10px 1px rgba(53, 64, 82, 0.1);
+          box-shadow: 0 0 10px 1px rgba(53, 64, 82, 0.1); }
+  @media (max-width: 768px) {
+    .c-invoice {
+      padding: 1.875rem; } }
+
+/**
+ * Invoice Header
+ *
+ * Contains:
+ * - compnay's name & logo 
+ * - invoice's title & date
+ */
+.c-invoice__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 3.125rem; }
+  @media (max-width: 768px) {
+    .c-invoice__header {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: column;
+              flex-flow: column; } }
+
+.c-invoice__brand {
+  margin-bottom: 1.875rem; }
+  @media (max-width: 768px) {
+    .c-invoice__brand {
+      margin: 0; } }
+
+.c-invoice__brand-img {
+  max-width: 40px;
+  margin-bottom: 0.9375rem; }
+
+.c-invoice__brand-name {
+  font-size: 1.5rem; }
+
+.c-invoice__title {
+  margin-top: 1.875rem; }
+  .c-invoice__title h4 {
+    margin: 0; }
+
+.c-invoice__date {
+  color: #7f8fa4; }
+
+/**
+ * Invoice Details
+ *
+ */
+.c-invoice__details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 6.25rem; }
+
+.c-invoice__company-name {
+  margin-bottom: 0.9375rem;
+  font-size: 1.25rem; }
+
+.c-invoice__company-address {
+  margin-bottom: 0.9375rem;
+  color: #7f8fa4; }
+
+/**
+ * Invoice content
+ */
+.c-invoice__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  @media (max-width: 768px) {
+    .c-invoice__body {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: column;
+              flex-flow: column; } }
+
+.c-invoice__desc {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 250px;
+          flex: 0 1 250px;
+  font-size: 1.25rem; }
+  @media (max-width: 768px) {
+    .c-invoice__desc {
+      -webkit-box-flex: 0;
+          -ms-flex: 0;
+              flex: 0;
+      margin-bottom: 1.875rem; } }
+
+.c-invoice__number {
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+.c-invoice__table {
+  width: 100%; }
+  .c-invoice__table .c-table {
+    margin-bottom: 0.625rem; }
+    @media (max-width: 768px) {
+      .c-invoice__table .c-table {
+        display: table;
+        width: 100%; } }
+
+.c-invoice__terms {
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+/**
+ * Footer
+ */
+.c-invoice__footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 6.25rem;
+  padding-top: 1.875rem;
+  border-top: 1px solid #e6eaee; }
+  @media (max-width: 576px) {
+    .c-invoice__footer {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: column;
+              flex-flow: column;
+      text-align: center; } }
+
+.c-invoice__footer-brand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  @media (max-width: 576px) {
+    .c-invoice__footer-brand {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: column;
+              flex-flow: column;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center; } }
+
+.c-invoice__footer-brand img {
+  max-width: 30px;
+  margin-right: 0.625rem; }
+  @media (max-width: 576px) {
+    .c-invoice__footer-brand img {
+      margin-bottom: 0.625rem; } }
+
+/* ==========================================================================
+   #FEED
+   ========================================================================== */
+/**
+ * User Activity Feed
+ * 
+ * This component is used to show a stream of the user's activities and it's 
+ * used in user-profile.html page.
+ */
+.c-feed {
+  position: relative;
+  margin-bottom: 1.875rem;
+  padding-left: 32px;
+  overflow: hidden; }
+  .c-feed::before {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    width: 1px;
+    height: 100%;
+    background-color: #e6eaee;
+    content: ""; }
+  .c-feed.has-icons {
+    padding-left: 47px; }
+    .c-feed.has-icons::before {
+      left: 14px; }
+
+.c-feed__item {
+  position: relative;
+  margin-bottom: 25px;
+  /**
+     * The small circle (dot) before every item of the feed
+     */ }
+  .c-feed__item::before {
+    position: absolute;
+    top: 4px;
+    left: -32px;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    background-color: #2ea1f8;
+    content: ""; }
+  .c-feed__item:last-child {
+    margin-bottom: 0; }
+    .c-feed__item:last-child::after {
+      position: absolute;
+      top: 16px;
+      left: -32px;
+      width: 12px;
+      height: 100%;
+      border-radius: 0;
+      background-color: #fff;
+      content: ""; }
+  .c-feed__item.has-icon::before {
+    display: none; }
+  .c-feed__item.has-icon .c-feed__item-icon {
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: -47px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: #2ea1f8;
+    color: #fff;
+    font-size: 0.875rem;
+    line-height: 30px;
+    text-align: center; }
+  .c-feed__item.has-icon:last-child::after {
+    top: 34px;
+    left: -47px;
+    width: 30px; }
+
+.c-feed__comment {
+  display: inline-block;
+  margin: 0.625rem 0;
+  padding: 0.625rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fafbfc; }
+
+.c-feed__gallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.625rem; }
+
+.c-feed__gallery-item {
+  width: 80px;
+  height: 80px;
+  margin: 0 0.625rem 0.625rem 0;
+  border-radius: 4px;
+  overflow: hidden; }
+
+.c-feed__meta {
+  display: block;
+  color: #7f8fa4;
+  font-size: 0.875rem; }
+
+/* Style variants
+   ========================================================================== */
+.c-feed__item--fancy::before {
+  background: #886ce6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#886ce6), to(#7d5be2));
+  background: linear-gradient(to bottom, #886ce6, #7d5be2); }
+
+.c-feed__item--info::before {
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea); }
+
+.c-feed__item--success::before {
+  background: #39b54a;
+  background: -webkit-gradient(linear, left top, left bottom, from(#39b54a), to(#34aa44));
+  background: linear-gradient(to bottom, #39b54a, #34aa44); }
+
+/* ==========================================================================
+   #RATING
+   ========================================================================== */
+/**
+ * A list of starts aligned horizontally to show the current rating of an item.
+ *
+ * EXAMPLE:
+ *
+ * <div class="c-rating">
+ *      <i class="c-rating__icon is-active fa fa-star"></i>
+ *      <i class="c-rating__icon is-active fa fa-star"></i>
+ *      <i class="c-rating__icon is-active fa fa-star"></i>
+ *      <i class="c-rating__icon is-active fa fa-star"></i>
+ *      <i class="c-rating__icon fa fa-star"></i>
+ *  </div>
+ */
+.c-rating {
+  display: block; }
+
+.c-rating__icon {
+  color: #BBBFC5;
+  font-size: 0.75rem; }
+  .c-rating__icon.is-active {
+    color: #FDBC0E; }
+
+/* ==========================================================================
+   #MAP
+   ========================================================================== */
+/**
+ * Map is powered by jqvmap plugin, these labels are added manually.
+ */
+.c-map__visual {
+  margin-bottom: 1.875rem; }
+
+.c-map__labels--left {
+  margin-right: 0.9375rem;
+  margin-left: 3.125rem; }
+
+.c-map__labels--right {
+  margin-right: 3.125rem;
+  margin-left: 0.9375rem; }
+
+@media (max-width: 1200px) {
+  .c-map__labels {
+    margin-right: 0;
+    margin-left: 0; } }
+
+.c-map__label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0.625rem; }
+  .c-map__label:last-child {
+    margin-bottom: 0; }
+
+.c-map__country,
+.c-map__number {
+  color: #354052; }
+
+/* ==========================================================================
+   #CANDIDATE
+   ========================================================================== */
+/**
+ * Used in candidates.html page
+ */
+.c-candidate {
+  margin-bottom: 1.875rem;
+  padding: 0.9375rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+/**
+ * 1. Remove weird extra space.
+ */
+.c-candidate__cover {
+  max-height: 150px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  font-size: 0;
+  /* [1] */
+  overflow: hidden; }
+
+.c-candidate__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  top: -0.9375rem;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-bottom: 0.9375rem;
+  border-bottom: 1px solid #e6eaee; }
+
+.c-candidate__avatar {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-right: 0.9375rem;
+  margin-left: 0.625rem;
+  border: 4px solid #fff;
+  border-radius: 100%;
+  overflow: hidden; }
+
+.c-candidate__meta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%; }
+
+.c-candidate__title {
+  margin: 0;
+  font-size: 1rem; }
+
+.c-candidate__country {
+  display: block;
+  color: #7f8fa4; }
+  .c-candidate__country i {
+    margin-right: 0.625rem; }
+
+.c-candidate__actions {
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-right: 0.625rem; }
+  .c-candidate__actions a {
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    color: #7f8fa4;
+    opacity: .5; }
+    .c-candidate__actions a:last-child {
+      margin-left: 0.3125rem; }
+    .c-candidate__actions a:hover {
+      opacity: 1; }
+
+.c-candidate__footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.c-candidate__status {
+  margin-right: 5%;
+  font-size: 0.875rem; }
+
+/* ==========================================================================
+   #STAGE
+   ========================================================================== */
+/**
+ * Stage component is used to describe the project you are working on based on
+ * multiple stages. This component is used in project-overview.html page.
+ */
+.c-stage {
+  margin-bottom: 1.875rem;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.c-stage__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.9375rem 1.875rem;
+  border-bottom: 1px solid #e6eaee;
+  cursor: pointer; }
+  .c-stage__header:hover {
+    text-decoration: none; }
+
+.c-stage__header-img {
+  max-width: 60px;
+  margin-right: 20px;
+  border-radius: 4px;
+  overflow: hidden; }
+
+.c-stage__icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.625rem;
+  border: #e6eaee solid 1px;
+  border-radius: 100%;
+  color: #7f8fa4;
+  background: #eff3f6;
+  font-size: 14px;
+  line-height: 25px;
+  text-align: center; }
+
+.c-stage__panel {
+  border-bottom: 1px solid #e6eaee;
+  /**
+     * Bootstrap classes used to show and hide sidebar submenu.
+     * This behaviour depends on collapse.js plugin.
+     */ }
+  .c-stage__panel.collapse {
+    display: none; }
+    .c-stage__panel.collapse.show {
+      display: block; }
+  .c-stage__panel.collapsing {
+    position: relative;
+    height: 0;
+    -webkit-transition: height 0.3s;
+    transition: height 0.3s;
+    overflow: hidden; }
+  .c-stage__panel--mute {
+    background-color: #fafbfc; }
+
+.c-stage__label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.9375rem 1.875rem;
+  background-color: #1bb934;
+  color: #fff; }
+
+.c-stage__label-icon {
+  margin-right: 0.625rem;
+  font-size: 1.75rem; }
+
+.c-stage__label-title {
+  color: #fff; }
+
+/* ==========================================================================
+   #COUNTER NAV
+   ========================================================================== */
+/**
+ * Counter nav is a different style of navigation, every navigation link has 
+ * an icon (that contains current number) before it. 
+ *
+ * This component is used in project-overview.html page.
+ */
+.c-counter-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.c-counter-nav__title {
+  margin-right: 0.625rem;
+  color: #7f8fa4; }
+
+.c-counter-nav__item {
+  margin-right: 1.25rem; }
+
+.c-counter-nav__link {
+  color: #7f8fa4;
+  font-size: 14px; }
+  .c-counter-nav__link:hover {
+    text-decoration: none; }
+  .c-counter-nav__link.is-active {
+    color: #354052; }
+
+.c-counter-nav__counter {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+  border: 1px solid #e6eaee;
+  border-radius: 100%;
+  background-color: #fafbfc;
+  color: #7f8fa4;
+  text-align: center; }
+  .c-counter-nav__link.is-active .c-counter-nav__counter {
+    background: #2EA1F8;
+    background: -webkit-gradient(linear, left top, left bottom, from(#2EA1F8), to(#1990EA));
+    background: linear-gradient(to bottom, #2EA1F8, #1990EA);
+    border-color: #2EA1F8;
+    color: #fff; }
+
+/**
+ * Inverse 
+ *
+ * Use `.c-counter-nav--inverse` when using this component on a dark background.
+ */
+.c-counter-nav--inverse .c-counter-nav__counter {
+  border-radius: 100%;
+  border-color: #313C4D;
+  background-color: #313C4D;
+  color: #828A96;
+  text-align: center; }
+  .c-counter-nav__link.is-active .c-counter-nav--inverse .c-counter-nav__counter {
+    color: #fff; }
+
+.c-counter-nav--inverse .c-counter-nav__link.is-active {
+  color: #fff; }
+
+/* ==========================================================================
+   #CHAT DIALOGUE
+   ========================================================================== */
+/**
+ * A pop-up dialogue for different purposes like chat and customer support.
+ * This component is used in chat-dialogue.html page.
+ */
+.c-chat-dialogue {
+  position: fixed;
+  right: 1.875rem;
+  bottom: 1.875rem; }
+
+.c-chat-dialogue__btn {
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  border-color: #1a91eb;
+  color: #fff;
+  font-size: 1.5rem;
+  -webkit-box-shadow: 0 2px 7px 0 rgba(34, 44, 60, 0.4);
+          box-shadow: 0 2px 7px 0 rgba(34, 44, 60, 0.4);
+  cursor: pointer; }
+  .c-chat-dialogue__btn .c-chat-dialogue__btn-close {
+    display: none; }
+  .c-chat-dialogue__btn.is-open .c-chat-dialogue__btn-open {
+    display: none; }
+  .c-chat-dialogue__btn.is-open .c-chat-dialogue__btn-close {
+    display: block; }
+
+.c-chat-dialogue__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  padding: 1.875rem;
+  border-bottom: 1px solid #e6eaee; }
+
+.c-chat-dialogue__team {
+  position: relative;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 35%; }
+  .c-chat-dialogue__team .c-avatar {
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .c-chat-dialogue__team .c-avatar:nth-child(2) {
+      -webkit-transform: translateX(20px);
+              transform: translateX(20px); }
+    .c-chat-dialogue__team .c-avatar:nth-child(3) {
+      -webkit-transform: translateX(40px);
+              transform: translateX(40px); }
+
+.c-chat-dialogue__body {
+  position: absolute;
+  right: 0;
+  bottom: 70px;
+  width: 350px;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-radius: 4px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.35);
+          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden; }
+  .c-chat-dialogue__body.is-active {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+    visibility: visible; }
+
+.c-chat-dialogue__messages {
+  height: 400px;
+  padding: 0 1.25rem;
+  background-color: #fafbfc;
+  overflow-y: auto; }
+
+.c-chat-dialogue__message {
+  padding: 10px 20px; }
+
+.c-chat-dialogue__message-content {
+  position: relative;
+  max-width: 80%;
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.875rem;
+  background: #2ea1f8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+  background: linear-gradient(to bottom, #2ea1f8, #1990ea);
+  word-wrap: break-word; }
+  .c-chat-dialogue__message-content::before {
+    position: absolute;
+    top: 30%;
+    right: 100%;
+    -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+    border: 6px solid transparent;
+    border-right-color: #2ea1f8;
+    content: " "; }
+
+.c-chat-dialogue__message--self {
+  text-align: right; }
+  .c-chat-dialogue__message--self .c-chat-dialogue__message-content {
+    margin-left: auto;
+    border: 1px solid #e6eaee;
+    background: #fff;
+    color: #354052; }
+    .c-chat-dialogue__message--self .c-chat-dialogue__message-content::before {
+      left: 100%;
+      border: 6px solid transparent;
+      border-left-color: #fff; }
+
+.c-chat-dialogue__footer {
+  padding: 1.25rem;
+  border-top: 1px solid #e6eaee;
+  background-color: #fff; }
+
+/* ==========================================================================
+   #LOGIN HORIZONTAL
+   ========================================================================== */
+.c-login-horizontal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%; }
+  .c-login-horizontal .c-login__content-wrapper,
+  .c-login-horizontal .c-login__content-image {
+    width: 50%; }
+    @media (max-width: 768px) {
+      .c-login-horizontal .c-login__content-wrapper,
+      .c-login-horizontal .c-login__content-image {
+        width: 100%; } }
+  .c-login-horizontal .c-login__header {
+    position: relative;
+    padding: 1.875rem 0 0;
+    padding-left: 1.875rem;
+    border: 0;
+    background-color: transparent; }
+    @media (max-width: 768px) {
+      .c-login-horizontal .c-login__header {
+        padding-top: 3.125rem; } }
+  .c-login-horizontal .c-login__icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    top: -35px;
+    right: 0;
+    left: 0;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 100%;
+    color: #fff;
+    font-size: 1.25rem;
+    background: #2ea1f8;
+    background: -webkit-gradient(linear, left top, left bottom, from(#2ea1f8), to(#1990ea));
+    background: linear-gradient(to bottom, #2ea1f8, #1990ea); }
+  .c-login-horizontal .c-login__icon--left {
+    right: initial;
+    left: 30px; }
+  .c-login-horizontal .c-login__icon--rounded {
+    top: -25px;
+    width: 45px;
+    height: 45px;
+    border-radius: 4px; }
+  .c-login-horizontal .c-login__title {
+    margin: 0;
+    font-size: 24px;
+    text-align: left; }
+  .c-login-horizontal .c-login__content {
+    padding: 0.9375rem 1.875rem 1.875rem 1.875rem; }
+  .c-login-horizontal .c-login__content-image {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 1.875rem;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #49515D;
+    color: #fff;
+    overflow: hidden; }
+    .c-login-horizontal .c-login__content-image img {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .2; }
+    .c-login-horizontal .c-login__content-image h3,
+    .c-login-horizontal .c-login__content-image p {
+      color: #fff; }
+    .c-login-horizontal .c-login__content-image p {
+      font-size: 1rem;
+      opacity: .9; }
+    @media (max-width: 768px) {
+      .c-login-horizontal .c-login__content-image {
+        display: none; } }
+
+/* ==========================================================================
+   #SIDEBAR MINIMUZED
+   ========================================================================== */
+/**
+ * This file contains all customization for minimized-style sidebar.
+ */
+/**
+ * This sidebar object
+ */
+@media (max-width: 992px) {
+  .c-sidebar.is-minimized .c-sidebar__icon {
+    margin-right: 15px; } }
+
+@media (min-width: 992px) {
+  .o-page__sidebar.is-minimized {
+    width: 70px; }
+  .o-page__sidebar.is-minimized + .o-page__content {
+    margin-left: 70px;
+    -webkit-transition: margin .3s;
+    transition: margin .3s; }
+  /**
+     * On Hover
+     */
+  .o-page__sidebar.is-minimized:hover {
+    width: 250px; }
+  .o-page__sidebar.is-minimized:hover + .o-page__content {
+    margin-left: 250px; }
+  /**
+     * This sidebar component
+     */
+  .c-sidebar.is-minimized {
+    width: 70px;
+    overflow-x: hidden;
+    -webkit-transition: width .3s;
+    transition: width .3s; }
+  .c-sidebar.is-minimized .c-sidebar__brand {
+    padding: 10px; }
+  .c-sidebar.is-minimized .c-sidebar__brand-img {
+    margin-right: 15px; }
+  .c-sidebar.is-minimized .c-sidebar__item {
+    border-bottom: 1px solid #2a3547; }
+  .c-sidebar.is-minimized .c-sidebar__link {
+    padding: 0; }
+  .c-sidebar.is-minimized .c-sidebar__icon {
+    display: block;
+    min-width: 70px;
+    padding: 15px 0;
+    font-size: 20px;
+    text-align: center; }
+  .c-sidebar.is-minimized .c-sidebar__item.has-submenu > .c-sidebar__link::after {
+    display: none;
+    top: 20px; }
+  /**
+     * On Hover
+     */
+  .c-sidebar.is-minimized.show,.c-sidebar.is-minimized:hover {
+    width: 250px; }
+  .c-sidebar.is-minimized.show,.c-sidebar.is-minimized:hover .c-sidebar__brand-text {
+    display: block; }
+  .c-sidebar.is-minimized.show,.c-sidebar.is-minimized:hover .c-sidebar__brand-img {
+    margin-right: 15px; }
+  .c-sidebar.is-minimized.show,.c-sidebar.is-minimized:hover .c-sidebar__title {
+    display: block; }
+  .c-sidebar.is-minimized.show,.c-sidebar.is-minimized:hover .c-sidebar__item.has-submenu > .c-sidebar__link::after {
+    display: block; } }
+
+/* ==========================================================================
+   #TYPOGRAPHY UTILITIES
+   ========================================================================== */
+/**
+ * Headings
+ *
+ * Redefine all of our basic heading styles against utility classes so as to
+ * allow for double stranded heading hierarchy, e.g. we semantically need an H2,
+ * but we want it to be sized like an H1:
+ *
+ *   <h2 class="u-h1"></h2>
+ *
+ */
+.u-h1 {
+  font-size: 2.25rem; }
+
+.u-h2 {
+  font-size: 1.75rem; }
+
+.u-h3 {
+  font-size: 1.5rem; }
+
+.u-h4 {
+  font-size: 1.25rem; }
+
+.u-h5 {
+  font-size: 1.125rem; }
+
+.u-h6 {
+  font-size: 1rem; }
+
+/**
+ * Text Utilitites
+ */
+/**
+ * Text Colors
+ */
+.u-text-mute {
+  color: #7f8fa4 !important; }
+
+.u-text-danger {
+  color: #ed1c24 !important; }
+
+.u-text-success {
+  color: #45B854 !important; }
+
+.u-text-dark {
+  color: #354052; }
+
+.u-text-white {
+  color: #fff; }
+
+/**
+  * Text Sizes
+  */
+.u-text-tiny {
+  font-size: 0.625rem !important; }
+
+.u-text-xsmall {
+  font-size: 0.75rem !important; }
+
+.u-text-small {
+  font-size: 0.875rem !important; }
+
+.u-text-large {
+  font-size: 1rem !important; }
+
+.u-text-big {
+  font-size: 3.375rem;
+  font-weight: 600;
+  line-height: 48px; }
+
+/**
+  * Font Weights
+  */
+.u-text-bold {
+  font-weight: 600 !important; }
+
+/**
+  * Aligning Text
+  */
+.u-text-right {
+  text-align: right !important; }
+
+.u-text-left {
+  text-align: left !important; }
+
+.u-text-center {
+  text-align: center !important; }
+
+/**
+ * Transforming Text
+ */
+.u-text-uppercase {
+  text-transform: uppercase !important; }
+
+.u-text-lowercase {
+  text-transform: lowercase !important; }
+
+.u-text-capitalize {
+  text-transform: capitalize !important; }
+
+/* ==========================================================================
+   #FLOATS UTILITIES
+   ========================================================================== */
+.u-float-left {
+  float: left !important; }
+
+.u-float-right {
+  float: right !important; }
+
+/* ==========================================================================
+   #CLEARFIX UTILITIY
+   ========================================================================== */
+/**
+ * Clear floated elements by adding `u-clearfix` to the parent element. 
+ */
+.u-clearfix::after {
+  display: table !important;
+  clear: both !important;
+  content: "" !important; }
+
+/* ==========================================================================
+   #SPACING UTILITIES
+   ========================================================================== */
+/**
+ * Spacing utilities are used to provide spacing between components using 
+ * margins or inside the components using paddings. Different sizes allow you 
+ * to easily construct consistent layouts of components.
+ */
+/**
+ * Margins
+ *
+ * m  -> all sides
+ * mt -> margin-top
+ * mr -> margin-right 
+ * mb -> margin-bottom
+ * ml -> margin-left
+ * mv -> margin-top & margin-bottom (vertically)
+ * mh -> margin-right & margin-left (horizontaly)
+ *
+ */
+.u-m-zero {
+  margin: 0 !important; }
+
+.u-mt-zero {
+  margin-top: 0 !important; }
+
+.u-mr-zero {
+  margin-right: 0 !important; }
+
+.u-mb-zero {
+  margin-bottom: 0 !important; }
+
+.u-ml-zero {
+  margin-left: 0 !important; }
+
+.u-mv-zero {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important; }
+
+.u-mh-zero {
+  margin-right: 0 !important;
+  margin-left: 0 !important; }
+
+.u-m-auto {
+  margin: auto !important; }
+
+.u-mt-auto {
+  margin-top: auto !important; }
+
+.u-mr-auto {
+  margin-right: auto !important; }
+
+.u-mb-auto {
+  margin-bottom: auto !important; }
+
+.u-ml-auto {
+  margin-left: auto !important; }
+
+.u-mv-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important; }
+
+.u-mh-auto {
+  margin-right: auto !important;
+  margin-left: auto !important; }
+
+.u-m-xsmall {
+  margin: 0.625rem !important; }
+
+.u-mt-xsmall {
+  margin-top: 0.625rem !important; }
+
+.u-mr-xsmall {
+  margin-right: 0.625rem !important; }
+
+.u-mb-xsmall {
+  margin-bottom: 0.625rem !important; }
+
+.u-ml-xsmall {
+  margin-left: 0.625rem !important; }
+
+.u-mv-xsmall {
+  margin-top: 0.625rem !important;
+  margin-bottom: 0.625rem !important; }
+
+.u-mh-xsmall {
+  margin-right: 0.625rem !important;
+  margin-left: 0.625rem !important; }
+
+.u-m-small {
+  margin: 0.9375rem !important; }
+
+.u-mt-small {
+  margin-top: 0.9375rem !important; }
+
+.u-mr-small {
+  margin-right: 0.9375rem !important; }
+
+.u-mb-small {
+  margin-bottom: 0.9375rem !important; }
+
+.u-ml-small {
+  margin-left: 0.9375rem !important; }
+
+.u-mv-small {
+  margin-top: 0.9375rem !important;
+  margin-bottom: 0.9375rem !important; }
+
+.u-mh-small {
+  margin-right: 0.9375rem !important;
+  margin-left: 0.9375rem !important; }
+
+.u-m-medium {
+  margin: 1.875rem !important; }
+
+.u-mt-medium {
+  margin-top: 1.875rem !important; }
+
+.u-mr-medium {
+  margin-right: 1.875rem !important; }
+
+.u-mb-medium {
+  margin-bottom: 1.875rem !important; }
+
+.u-ml-medium {
+  margin-left: 1.875rem !important; }
+
+.u-mv-medium {
+  margin-top: 1.875rem !important;
+  margin-bottom: 1.875rem !important; }
+
+.u-mh-medium {
+  margin-right: 1.875rem !important;
+  margin-left: 1.875rem !important; }
+
+.u-m-large {
+  margin: 3.125rem !important; }
+
+.u-mt-large {
+  margin-top: 3.125rem !important; }
+
+.u-mr-large {
+  margin-right: 3.125rem !important; }
+
+.u-mb-large {
+  margin-bottom: 3.125rem !important; }
+
+.u-ml-large {
+  margin-left: 3.125rem !important; }
+
+.u-mv-large {
+  margin-top: 3.125rem !important;
+  margin-bottom: 3.125rem !important; }
+
+.u-mh-large {
+  margin-right: 3.125rem !important;
+  margin-left: 3.125rem !important; }
+
+.u-m-xlarge {
+  margin: 6.25rem !important; }
+
+.u-mt-xlarge {
+  margin-top: 6.25rem !important; }
+
+.u-mr-xlarge {
+  margin-right: 6.25rem !important; }
+
+.u-mb-xlarge {
+  margin-bottom: 6.25rem !important; }
+
+.u-ml-xlarge {
+  margin-left: 6.25rem !important; }
+
+.u-mv-xlarge {
+  margin-top: 6.25rem !important;
+  margin-bottom: 6.25rem !important; }
+
+.u-mh-xlarge {
+  margin-right: 6.25rem !important;
+  margin-left: 6.25rem !important; }
+
+/**
+ * Paddings
+ *
+ * p  -> all sides
+ * pt -> padding-top
+ * pr -> padding-right 
+ * pb -> padding-bottom
+ * pl -> padding-left
+ * pv -> padding-top & padding-bottom (vertically)
+ * ph -> padding-right & padding-left (horizontaly)
+ *
+ */
+.u-p-zero {
+  padding: 0 !important; }
+
+.u-pt-zero {
+  padding-top: 0 !important; }
+
+.u-pr-zero {
+  padding-right: 0 !important; }
+
+.u-pb-zero {
+  padding-bottom: 0 !important; }
+
+.u-pl-zero {
+  padding-left: 0 !important; }
+
+.u-pv-zero {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important; }
+
+.u-ph-zero {
+  padding-right: 0 !important;
+  padding-left: 0 !important; }
+
+.u-p-auto {
+  padding: auto !important; }
+
+.u-pt-auto {
+  padding-top: auto !important; }
+
+.u-pr-auto {
+  padding-right: auto !important; }
+
+.u-pb-auto {
+  padding-bottom: auto !important; }
+
+.u-pl-auto {
+  padding-left: auto !important; }
+
+.u-pv-auto {
+  padding-top: auto !important;
+  padding-bottom: auto !important; }
+
+.u-ph-auto {
+  padding-right: auto !important;
+  padding-left: auto !important; }
+
+.u-p-xsmall {
+  padding: 0.625rem !important; }
+
+.u-pt-xsmall {
+  padding-top: 0.625rem !important; }
+
+.u-pr-xsmall {
+  padding-right: 0.625rem !important; }
+
+.u-pb-xsmall {
+  padding-bottom: 0.625rem !important; }
+
+.u-pl-xsmall {
+  padding-left: 0.625rem !important; }
+
+.u-pv-xsmall {
+  padding-top: 0.625rem !important;
+  padding-bottom: 0.625rem !important; }
+
+.u-ph-xsmall {
+  padding-right: 0.625rem !important;
+  padding-left: 0.625rem !important; }
+
+.u-p-small {
+  padding: 0.9375rem !important; }
+
+.u-pt-small {
+  padding-top: 0.9375rem !important; }
+
+.u-pr-small {
+  padding-right: 0.9375rem !important; }
+
+.u-pb-small {
+  padding-bottom: 0.9375rem !important; }
+
+.u-pl-small {
+  padding-left: 0.9375rem !important; }
+
+.u-pv-small {
+  padding-top: 0.9375rem !important;
+  padding-bottom: 0.9375rem !important; }
+
+.u-ph-small {
+  padding-right: 0.9375rem !important;
+  padding-left: 0.9375rem !important; }
+
+.u-p-medium {
+  padding: 1.875rem !important; }
+
+.u-pt-medium {
+  padding-top: 1.875rem !important; }
+
+.u-pr-medium {
+  padding-right: 1.875rem !important; }
+
+.u-pb-medium {
+  padding-bottom: 1.875rem !important; }
+
+.u-pl-medium {
+  padding-left: 1.875rem !important; }
+
+.u-pv-medium {
+  padding-top: 1.875rem !important;
+  padding-bottom: 1.875rem !important; }
+
+.u-ph-medium {
+  padding-right: 1.875rem !important;
+  padding-left: 1.875rem !important; }
+
+.u-p-large {
+  padding: 3.125rem !important; }
+
+.u-pt-large {
+  padding-top: 3.125rem !important; }
+
+.u-pr-large {
+  padding-right: 3.125rem !important; }
+
+.u-pb-large {
+  padding-bottom: 3.125rem !important; }
+
+.u-pl-large {
+  padding-left: 3.125rem !important; }
+
+.u-pv-large {
+  padding-top: 3.125rem !important;
+  padding-bottom: 3.125rem !important; }
+
+.u-ph-large {
+  padding-right: 3.125rem !important;
+  padding-left: 3.125rem !important; }
+
+.u-p-xlarge {
+  padding: 6.25rem !important; }
+
+.u-pt-xlarge {
+  padding-top: 6.25rem !important; }
+
+.u-pr-xlarge {
+  padding-right: 6.25rem !important; }
+
+.u-pb-xlarge {
+  padding-bottom: 6.25rem !important; }
+
+.u-pl-xlarge {
+  padding-left: 6.25rem !important; }
+
+.u-pv-xlarge {
+  padding-top: 6.25rem !important;
+  padding-bottom: 6.25rem !important; }
+
+.u-ph-xlarge {
+  padding-right: 6.25rem !important;
+  padding-left: 6.25rem !important; }
+
+/* ==========================================================================
+   #COLORS UTILITIES
+   ========================================================================== */
+/**
+ * Set the text color of elements.
+ */
+.u-color-success {
+  color: #1bb934 !important; }
+
+.u-color-info {
+  color: #2ea1f8 !important; }
+
+.u-color-danger {
+  color: #ed1c24 !important; }
+
+.u-color-warning {
+  color: #fd9a18 !important; }
+
+.u-color-primary {
+  color: #354052 !important; }
+
+.u-color-secondary {
+  color: #fff !important; }
+
+.u-color-white {
+  color: #fff !important; }
+
+/**
+  * Set the background color of elements.
+  */
+.u-bg-success {
+  background: #1bb934 !important;
+  background-color: #1bb934 !important; }
+
+.u-bg-info {
+  background: #1a91eb !important;
+  background-color: #1a91eb !important; }
+
+.u-bg-danger {
+  background: #ed1c24 !important;
+  background-color: #ed1c24 !important; }
+
+.u-bg-fancy {
+  background: #a388e3 !important;
+  background-color: #a388e3 !important; }
+
+.u-bg-warning {
+  background: #fd9a18 !important;
+  background-color: #fd9a18 !important; }
+
+.u-bg-primary {
+  background: #475364 !important;
+  background-color: #475364 !important; }
+
+.u-bg-secondary {
+  background: #fafbfc !important;
+  background-color: #fafbfc !important; }
+
+.u-bg-white {
+  background: #fff !important;
+  background-color: #fff !important; }
+
+/**
+  * Use brand-color utilities to apply text colors and background colors to 
+  * brand-related components like social icons.
+  */
+/**
+ * Brand text colors
+ */
+.u-color-facebook {
+  color: #2492E4 !important; }
+
+.u-color-twitter {
+  color: #0AF !important; }
+
+.u-color-pinterest {
+  color: #E30F27 !important; }
+
+.u-color-behance {
+  color: #187AC6 !important; }
+
+.u-color-dribbble {
+  color: #ea4c89 !important; }
+
+.u-color-linkedin {
+  color: #222 !important; }
+
+/**
+ * Brand background colors
+ *
+ * 1. If a component has border, we change its border-color to match with
+ *    the brand background-color.
+ */
+.u-bg-facebook {
+  border-color: #2492E4 !important;
+  /* [1] */
+  background: #2492E4 !important; }
+
+.u-bg-twitter {
+  border-color: #0AF !important;
+  background: #0AF !important; }
+
+.u-bg-pinterest {
+  border-color: #E30F27 !important;
+  background: #E30F27 !important; }
+
+.u-bg-behance {
+  border-color: #187AC6 !important;
+  background: #187AC6 !important; }
+
+.u-bg-dribbble {
+  border-color: #ea4c89 !important;
+  background: #ea4c89 !important; }
+
+.u-bg-linkedin {
+  border-color: #222;
+  background-color: #222 !important; }
+
+/* ==========================================================================
+   #DISPLAY UTILITIES
+   ========================================================================== */
+.u-block {
+  display: block !important; }
+
+.u-inline-block {
+  display: inline-block !important; }
+
+.u-inline {
+  display: inline !important; }
+
+/* ==========================================================================
+   #BORDER UTILITIES
+   ========================================================================== */
+/**
+ * Use border utilities to add or remove borders from certain components 
+ * to prevent border collapsing.
+ */
+/**
+ * Add borders
+ */
+.u-border-top {
+  border-top: 1px solid #e6eaee !important; }
+
+.u-border-right {
+  border-right: 1px solid #e6eaee !important; }
+
+.u-border-bottom {
+  border-bottom: 1px solid #e6eaee !important; }
+
+.u-border-left {
+  border-left: 1px solid #e6eaee !important; }
+
+/**
+ * Remove borders
+ */
+.u-border-zero {
+  border: 0 !important; }
+
+.u-border-top-zero {
+  border-top: 0 !important; }
+
+.u-border-right-zero {
+  border-right: 0 !important; }
+
+.u-border-bottom-zero {
+  border-bottom: 0 !important; }
+
+.u-border-left-zero {
+  border-left: 0 !important; }
+
+/**
+ * Border radius
+ */
+.u-border-rounded {
+  border-radius: 4px;
+  overflow: hidden; }
+
+.u-border-circle {
+  border-radius: 100%;
+  overflow: hidden; }
+
+/* ==========================================================================
+   #FLEX UTILITIES
+   ========================================================================== */
+.u-flex {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important; }
+
+.u-inline-flex {
+  display: -webkit-inline-box !important;
+  display: -ms-inline-flexbox !important;
+  display: inline-flex !important; }
+
+.u-justify-start {
+  -webkit-box-pack: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: flex-start !important; }
+
+.u-justify-end {
+  -webkit-box-pack: end !important;
+      -ms-flex-pack: end !important;
+          justify-content: flex-end !important; }
+
+.u-justify-center {
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important; }
+
+.u-justify-between {
+  -webkit-box-pack: justify !important;
+      -ms-flex-pack: justify !important;
+          justify-content: space-between !important; }
+
+.u-justify-around {
+  -ms-flex-pack: distribute !important;
+      justify-content: space-around !important; }
+
+.u-align-items-start {
+  -webkit-box-align: start !important;
+      -ms-flex-align: start !important;
+          align-items: flex-start !important; }
+
+.u-align-items-end {
+  -webkit-box-align: end !important;
+      -ms-flex-align: end !important;
+          align-items: flex-end !important; }
+
+.u-align-items-center {
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important; }
+
+.u-align-items-baseline {
+  -webkit-box-align: baseline !important;
+      -ms-flex-align: baseline !important;
+          align-items: baseline !important; }
+
+.u-align-items-stretch {
+  -webkit-box-align: stretch !important;
+      -ms-flex-align: stretch !important;
+          align-items: stretch !important; }
+
+.u-align-self-start {
+  -ms-flex-item-align: start !important;
+      align-self: flex-start !important; }
+
+.u-align-self-end {
+  -ms-flex-item-align: end !important;
+      align-self: flex-end !important; }
+
+.u-align-self-center {
+  -ms-flex-item-align: center !important;
+      align-self: center !important; }
+
+.u-align-self-baseline {
+  -ms-flex-item-align: baseline !important;
+      align-self: baseline !important; }
+
+.u-align-self-stretch {
+  -ms-flex-item-align: stretch !important;
+      align-self: stretch !important; }
+
+.u-flex-wrap {
+  -ms-flex-wrap: wrap !important;
+      flex-wrap: wrap !important; }
+
+.u-flex-nowrap {
+  -ms-flex-wrap: nowrap !important;
+      flex-wrap: nowrap !important; }
+
+/* ==========================================================================
+   #RESPONSIVE UTILITIES
+   ========================================================================== */
+/**
+ * Hide content at all viewports.
+ */
+.u-hidden {
+  display: none !important; }
+
+/**
+ * Hide visually but make it accessible to screenreaders.
+ */
+.u-hidden-visually {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  -webkit-clip-path: inset(50%) !important;
+          clip-path: inset(50%) !important; }
+
+/**
+ * Use `u-hidden-down@{breakpoint}` to hide content from a specific breakpoint 
+ * and smaller viewports.
+ *
+ * 1. Hide on mobile.
+ * 2. Hide on mobile and tablet.
+ * 3. Hide on mobile, tablet and desktop.
+ * 4. Hide on mobile, tablet, desktop and wide. 
+ *
+ * NOTE: u-hidden@wide : still visible on viewports larger than wide breakpoint.
+ */
+@media (max-width: 576px) {
+  .u-hidden-down\@mobile {
+    /* [1] */
+    display: none !important; } }
+
+@media (max-width: 768px) {
+  .u-hidden-down\@tablet {
+    /* [2] */
+    display: none !important; } }
+
+@media (max-width: 992px) {
+  .u-hidden-down\@desktop {
+    /* [3] */
+    display: none !important; } }
+
+@media (max-width: 1200px) {
+  .u-hidden-down\@wide {
+    /* [4] */
+    display: none !important; } }
+
+/**
+ * Use `u-hidden-up@{breakpoint}` to hide content from a specific breakpoint 
+ * and larger viewports.
+ *
+ * 1. Hide on viewports larger than mobile.
+ * 2. Hide on viewports larger than tablet.
+ * 3. Hide on viewports larger than desktop.
+ * 4. Hide on viewports larger than wide.
+ *
+ * NOTE: u-hidden@wide : still visible on viewports larger than wide breakpoint.
+ */
+@media (min-width: 576px) {
+  .u-hidden-up\@mobile {
+    /* [1] */
+    display: none !important; } }
+
+@media (min-width: 768px) {
+  .u-hidden-up\@tablet {
+    /* [2] */
+    display: none !important; } }
+
+@media (min-width: 992px) {
+  .u-hidden-up\@desktop {
+    /* [3] */
+    display: none !important; } }
+
+@media (min-width: 1200px) {
+  .u-hidden-up\@wide {
+    /* [4] */
+    display: none !important; } }
+
+/* ==========================================================================
+   #OPACITY UTILITIES
+   ========================================================================== */
+/**
+ * Use opacity utilities to specify the level of transparency of an element
+ */
+.u-opacity-heavy {
+  opacity: 0.75 !important; }
+
+.u-opacity-medium {
+  opacity: 0.5 !important; }
+
+.u-opacity-light {
+  opacity: 0.25 !important; }
+
+.u-opacity-zero {
+  opacity: 0; }
+
+/* ==========================================================================
+   #SIZES UTILITIES
+   ========================================================================== */
+/**
+ * Widths
+ */
+.u-width-25 {
+  width: 25% !important; }
+
+.u-width-50 {
+  width: 50% !important; }
+
+.u-width-75 {
+  width: 75% !important; }
+
+.u-width-100 {
+  width: 100% !important; }
+
+/**
+ * Heights
+ */
+.u-height-25 {
+  height: 25% !important; }
+
+.u-height-50 {
+  height: 50% !important; }
+
+.u-height-75 {
+  height: 75% !important; }
+
+.u-height-100 {
+  height: 100% !important; }
+
+/* ==========================================================================
+   #OVERFLOW UTILITIES
+   ========================================================================== */
+/**
+ * Overflow
+ */
+.u-overflow-auto {
+  overflow: auto; }
+
+.u-overflow-scroll {
+  overflow: scroll; }
+
+/**
+ * Horizontal Overflow
+ */
+.u-overflow-x-auto {
+  overflow: auto; }
+
+.u-overflow-x-scroll {
+  overflow: scroll; }
+
+/**
+ * Vericall Overflow
+ */
+.u-overflow-y-auto {
+  overflow: auto; }
+
+.u-overflow-y-scroll {
+  overflow: scroll; }
+
+/* ==========================================================================
+   #BOOTSTRAP UTILITIES
+   ========================================================================== */
+/**
+ * These classes are used by bootstrap plugins.
+ */
+.fade {
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+  opacity: 0; }
+  .fade.show {
+    opacity: 1; }
