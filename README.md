@@ -1,6 +1,7 @@
 # Learning Mastery :trophy:
-
 Learning Management System use CodeIgniter3
+
+![Riedayme](https://github.com/riedayme/LearningMastery/blob/main/preview.png?raw=true)
 
 ## Fitur Umum yang tersedia
 
@@ -93,29 +94,6 @@ password: kurteyki
 * buildwithangga.com (module pembayaran manual)
 * skillacademy.com (template lms)
 * cms.botble.com (module pengaturan smtp dan statistik visitor)
-
-## Bug Aplikasi
-
-* language english
-* not perfect payment gateway
-
-## Change Log
-
-**v1.0**
-* Release
-
-**v1.5**
-* Change Logic
-
-**V1.6**
-* add instructor
-* Login using social account
-* Review user
-* Cookies notification
-* Manual Payment
-* Register with Vertification Email (queue system)
-* add Captcha on register page
-* Delete table tb_site_meta (merge data to tb_site)
 
 ## Lisensi
 

@@ -11,4 +11,9 @@ application/logs/*
 
 # test
 test.php
+
+# bugs
+bugs/*
+
+# start
 start.bat
